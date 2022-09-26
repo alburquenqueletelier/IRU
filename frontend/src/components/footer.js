@@ -6,7 +6,9 @@ import React from "react";
 // mt-auto
 export const Footer = () => {
 //   const { store } = useContext(Context);
-  return <div>
+  return (
+  <div>
     <h2>Footer</h2>
   </div>
+  );
 };
