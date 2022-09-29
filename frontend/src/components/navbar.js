@@ -1,10 +1,12 @@
-import React, { useState } from "react";
-// import { Link, Navigate } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Context } from "../store/appContext";
+import { Link } from "react-router-dom";
 
-// import { Context } from "../store/appContext";
 // import styles
 
 export const Navbar = () => {
+
+  const { store, actions } = useContext(Context);
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -12,19 +14,21 @@ export const Navbar = () => {
     e.preventDefault();
     if (!username || username.length < 3) {
       console.log('debes ingresar un usuario valido');
+      return false;
     }
     if (!password) {
       console.log('Debes ingresar una clave');
+      return false;
     }
-    return false;
+    return actions.login(username, password);
   };
 
   return (
     <>
 
-      <nav className="navbar navbar-expand-lg bg-light">
+      <nav className="navbar navbar-expand-md bg-light">
         <div className="container-fluid">
-          <a className="navbar-brand" href="#">IRU</a>
+          <Link className="navbar-brand" to="/">IRU</Link>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
@@ -36,18 +40,12 @@ export const Navbar = () => {
               <li className="nav-item">
                 <a className="nav-link" href="#">Contacto</a>
               </li>
-              <form className="d-flex" onSubmit={handlelogin}>
-              <li className="nav-item">
-                <input className="form-control me-2" type="text" placeholder="Usuario" aria-label="Text" value={username} onChange={(e)=>setUsername(e.target.value)}/>
-              </li>
-              <li className="nav-item">
-                <input className="form-control me-2" type="password" placeholder="Constraseña" aria-label="Contraseña" onChange={(e)=>setPassword(e.target.value)}/>
-              </li>
-              <li className="nav-item">
-                <button className="btn btn-outline-primary" type="submit">Login</button>
-              </li>
-              </form>
             </ul>
+            <form className="d-md-flex d-inline-block text-center" onSubmit={handlelogin}>
+              <input className="form-control me-2" type="text" placeholder="Usuario" aria-label="Text" value={username} onChange={(e) => setUsername(e.target.value)} />
+              <input className="form-control me-2" type="password" placeholder="Constraseña" aria-label="Contraseña" onChange={(e) => setPassword(e.target.value)} />
+              <button className="btn btn-outline-primary" type="submit">Login</button>
+            </form>
           </div>
         </div>
       </nav>
