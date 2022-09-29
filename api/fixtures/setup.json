@@ -1,0 +1,107 @@
+[
+    {
+        "model": "api.base",
+        "pk": 1,
+        "fields": {
+            "name": "Harina de Trigo",
+            "brand": "Mariposa"
+        }
+    },
+    {
+        "model": "api.base",
+        "pk": 2,
+        "fields": {
+            "name": "Harina Integral",
+            "brand": "asdf"
+        }  
+    },
+    {
+        "model": "api.topping",
+        "pk": 1,
+        "fields": {
+            "name": "Glaseado",
+            "description": "Salsa a base de azucar flor y esencia de vainilla"
+        }  
+    },
+    {
+        "model": "api.topping",
+        "pk": 2,
+        "fields": {
+            "name": "Frosting",
+            "description": "Salsa a base de queso crema, mantequilla, azucar flor y esencia de vainilla"
+        }  
+    },
+    {
+        "model": "api.topping",
+        "pk": 3,
+        "fields": {
+            "name": "Manjar",
+            "description": "Manjar cremoso"
+        }  
+    },
+    {
+        "model": "api.Aggregate",
+        "pk": 1,
+        "fields": {
+            "name": "Rolls",
+            "description": "Bolas de rolls tradicional",
+            "brand": "Costa"
+        }  
+    },
+    {
+        "model": "api.Aggregate",
+        "pk": 2,
+        "fields": {
+            "name": "Kitkat",
+            "description": "Trozos de Kitkat",
+            "brand": "Nestle"
+        }  
+    },
+    {
+        "model": "api.Aggregate",
+        "pk": 3,
+        "fields": {
+            "name": "Oreo",
+            "description": "Galleta Oreo",
+            "brand": "Nabisco"
+        }  
+    },
+    {
+        "model": "api.Aggregate",
+        "pk": 4,
+        "fields": {
+            "name": "Costa Rama",
+            "description": "Hilachas de chocolate negro en Rama",
+            "brand": "Costa"
+        }  
+    },
+    {
+        "model": "api.Aggregate",
+        "pk": 5,
+        "fields": {
+            "name": "Rocklets",
+            "description": "Rocklets de chocolate",
+            "brand": "Arcor"
+        }  
+    },
+    {
+        "model": "api.Roll",
+        "pk": 1,
+        "fields": {
+            "base": "1",
+            "topping": ["2"],
+            "aggregate": "4",
+            "image": "http://127.0.0.1:8000/rolls/rolls/ArtidocheloneLogo2.png"
+        }  
+    },
+    {
+        "model": "api.Roll",
+        "pk": 2,
+        "fields": {
+            "base": "1",
+            "topping": ["1","2"],
+            "aggregate": "1",
+            "image": "http://127.0.0.1:8000/rolls/rolls/ultimo_code.png"
+        }  
+    }
+]
