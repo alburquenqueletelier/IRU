@@ -26,7 +26,7 @@ export const Navbar = () => {
   return (
     <>
 
-      <nav className="navbar navbar-expand-md bg-light">
+      <nav className="navbar navbar-expand-md bg-light sticky-top">
         <div className="container-fluid">
           <Link className="navbar-brand" to="/">IRU</Link>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,7 +35,7 @@ export const Navbar = () => {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="#">Productos</a>
+                <a className="nav-link active" aria-current="page" href="#productos">Productos</a>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="#">Contacto</a>
@@ -46,6 +46,7 @@ export const Navbar = () => {
               <input className="form-control me-2" type="password" placeholder="Constraseña" aria-label="Contraseña" onChange={(e) => setPassword(e.target.value)} />
               <button className="btn btn-outline-primary" type="submit">Login</button>
             </form>
+              <a className="btn btn-outline-primary ms-1" href="#register">Registrate</a>
           </div>
         </div>
       </nav>

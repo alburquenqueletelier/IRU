@@ -6,6 +6,8 @@ from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
 )
+from django.conf import settings
+from django.conf.urls.static import static
 # import views from app
 from api import views
 
@@ -16,6 +18,9 @@ router.register(r'bases', views.BaseViewSet)
 router.register(r'salsas', views.ToppingViewSet)
 router.register(r'agregados', views.AggregateViewSet)
 router.register(r'rolls', views.RollViewSet)
+router.register(r'rolls_amount', views.RollNumComboViewSet)
+router.register(r'combos', views.ComboViewSet)
+router.register(r'test', views.TestimageViewSet)
 
 
 # Wire up our API using automatic URL routing.
@@ -27,4 +32,4 @@ urlpatterns = [
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

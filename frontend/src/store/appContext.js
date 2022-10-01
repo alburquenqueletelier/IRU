@@ -22,7 +22,8 @@ const injectContext = PassedComponent => {
 		);
 
 		useEffect(() => {
-
+			state.actions.getAllRolls();
+			state.actions.getAllCombos();
 		}, []);
 
 		

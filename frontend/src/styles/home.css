@@ -1,1 +1,32 @@
 /* Style Home */
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;700&display=swap');
+
+@font-face {
+    font-family: 'Billarkdemo';
+    src: local("Billarkdemo.otf") format('opentype');
+  }
+
+h1,h2,h3,h4,h5 {
+    font-family: 'Billarkdemo', sans-serif !important;
+}
+
+.carousel .carousel-item {
+    height: 500px;
+}
+  
+.carousel-item img {
+    position: absolute;
+    object-fit: cover;
+    top: 0;
+    left: 0;
+    min-height: 500px;
+}
+
+#home {
+    /* background-image: url("http://127.0.0.1:8000/media/rolls/fondo iru.png");
+    background-size: contain; */
+    font-family: 'Oswald', 'sans-serif' !important;
+}
+
+/* Mogra */
+/* Quintessential */

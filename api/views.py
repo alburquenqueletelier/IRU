@@ -47,3 +47,17 @@ class RollViewSet(viewsets.ModelViewSet):
 
     queryset = Roll.objects.all()
     serializer_class = RollSerializer
+
+class RollNumComboViewSet(viewsets.ModelViewSet):
+
+    queryset = RollNumCombo.objects.all()
+    serializer_class = RollNumComboSerializer
+
+class ComboViewSet(viewsets.ModelViewSet):
+
+    queryset = Combo.objects.all()
+    serializer_class = ComboSerializer
+
+class TestimageViewSet(viewsets.ModelViewSet):
+    queryset = Testimage.objects.all()
+    serializer_class = TestimageSerializer

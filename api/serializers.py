@@ -1,5 +1,5 @@
 # import serializers from the REST framework
-from dataclasses import field
+from dataclasses import field, fields
 from pyexpat import model
 from rest_framework import serializers
  
@@ -32,4 +32,19 @@ class AggregateSerializer(serializers.ModelSerializer):
 class RollSerializer(serializers.ModelSerializer):
     class Meta:
         model = Roll
-        fields = ('id', 'base', 'topping', 'aggregate')
+        fields = ('id', 'name', 'description', 'price', 'image', 'base', 'topping', 'aggregate')
+
+class RollNumComboSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = RollNumCombo
+        fields = ('id', 'roll', 'amount')
+
+class ComboSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Combo
+        fields = ('id', 'name', 'total_rolls', 'roll_amount', 'description', 'price')
+
+class TestimageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Testimage
+        fields = '__all__'

@@ -45,6 +45,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 					setStore({aggregates:data});
 				});
 			},
+			getAllTest:()=>{
+				fetch("http://127.0.0.1:8000/api/test/")
+				.then(res=>res.json())
+				.then(data=>{
+					console.log(data);
+					setStore({test:data});
+				});
+			},
+			getAllCombos:()=>{
+				fetch("http://127.0.0.1:8000/api/combos/")
+				.then(res=>res.json())
+				.then(data=>{
+					console.log(data);
+					setStore({combos:data});
+				});
+			},
 			// Post action
 			login: (username, password) => {
 				fetch("http://127.0.0.1:8000/api/token/", {
@@ -82,6 +98,27 @@ const getState = ({ getStore, getActions, setStore }) => {
 					// setStore({data:data}) si es necesrio
 				})
 				.catch(error=>console.log(error));
+			},
+			postTest: (e, image)=>{
+				e.preventDefault();
+				const formdata = new FormData();
+				formdata.append("imagen", image);
+
+				fetch("http://127.0.0.1:8000/api/test/", {
+					method: 'POST',
+					// headers: {
+					// 	"Content-type": "multipart/form-data",
+					// 	// "Authentication": {"Bearer " + token} u otro metodo
+					// },
+					body: formdata
+				})
+				.then(res=>res.json())
+				.then(data=>{
+					console.log(data);
+					// setStore({data:data}) si es necesrio
+				})
+				.catch(error=>console.log(error));
+				return false;
 			},
 			// getMessage: async () => {
 			// 	try{
