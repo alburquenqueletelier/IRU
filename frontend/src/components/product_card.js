@@ -7,7 +7,7 @@ export const ProductCard = (props) => {
 
     return (
         <div className="card">
-            <img src={props.image} className="card-img-top size-card" alt="..." />
+            <img src={props.image} className="card-img-top size-image" alt="..." />
             <div className="card-body">
                 <h5 className="card-title">{props.title}</h5>
                 <p className="card-text">{props.description}</p>

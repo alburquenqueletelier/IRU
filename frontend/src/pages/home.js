@@ -4,6 +4,7 @@ import "../styles/home.css";
 
 import { ProductCard } from "../components/product_card";
 import { Registerform } from "../components/register_form";
+import { Spinners } from "../components/spinners";
 
 export const Home = () => {
 
@@ -103,38 +104,13 @@ export const Home = () => {
             </div>
           );
         })
-        : <div>
-          <div className="spinner-grow text-primary" role="status">
-            <span className="visually-hidden">Loading...</span>
-          </div>
-          <div className="spinner-grow text-secondary" role="status">
-            <span className="visually-hidden">Loading...</span>
-          </div>
-          <div className="spinner-grow text-success" role="status">
-            <span className="visually-hidden">Loading...</span>
-          </div>
-          <div className="spinner-grow text-danger" role="status">
-            <span className="visually-hidden">Loading...</span>
-          </div>
-          <div className="spinner-grow text-warning" role="status">
-            <span className="visually-hidden">Loading...</span>
-          </div>
-          <div className="spinner-grow text-info" role="status">
-            <span className="visually-hidden">Loading...</span>
-          </div>
-          <div className="spinner-grow text-light" role="status">
-            <span className="visually-hidden">Loading...</span>
-          </div>
-          <div className="spinner-grow text-dark" role="status">
-            <span className="visually-hidden">Loading...</span>
-          </div>
-        </div>
+        : <Spinners />
       }
     </div>
     <hr></hr>
     <h1 className="text-center">Combos</h1>
     <div className="row row-cols-4">
-      {!!store.combos &&
+      {store.combos ? 
         store.combos.map((item, index) => {
           return (
             <div className="col" key={index}>
@@ -142,6 +118,7 @@ export const Home = () => {
             </div>
           );
         })
+        : <Spinners />
       }
     </div>
     <hr id="register"></hr>

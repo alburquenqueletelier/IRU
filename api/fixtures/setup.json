@@ -83,25 +83,5 @@
             "description": "Rocklets de chocolate",
             "brand": "Arcor"
         }  
-    },
-    {
-        "model": "api.Roll",
-        "pk": 1,
-        "fields": {
-            "base": "1",
-            "topping": ["2"],
-            "aggregate": "4",
-            "image": "http://127.0.0.1:8000/rolls/rolls/ArtidocheloneLogo2.png"
-        }  
-    },
-    {
-        "model": "api.Roll",
-        "pk": 2,
-        "fields": {
-            "base": "1",
-            "topping": ["1","2"],
-            "aggregate": "1",
-            "image": "http://127.0.0.1:8000/rolls/rolls/ultimo_code.png"
-        }  
     }
 ]

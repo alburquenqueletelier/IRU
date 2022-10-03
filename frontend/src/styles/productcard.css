@@ -1,3 +1,4 @@
-.size-card{
-    height: 200px;
+.size-image{
+    object-fit: contain;
+    
 }

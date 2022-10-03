@@ -58,6 +58,16 @@ class ComboViewSet(viewsets.ModelViewSet):
     queryset = Combo.objects.all()
     serializer_class = ComboSerializer
 
+class OfferViewSet(viewsets.ModelViewSet):
+
+    queryset = Offer.objects.all()
+    serializer_class = ComboSerializer
+
+class CarouselViewSet(viewsets.ModelViewSet):
+
+    queryset = Carousel.objects.all()
+    serializer_class = ComboSerializer
+
 class TestimageViewSet(viewsets.ModelViewSet):
     queryset = Testimage.objects.all()
     serializer_class = TestimageSerializer
