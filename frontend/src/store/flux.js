@@ -1,7 +1,22 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			message: null
+			// order: []
+			offers: [],
+			combos: [],
+			rolls: [],
+			carousels: [],
+			order: {
+				roll: [
+					{
+						id: 3,
+						amount: "2"
+					}
+				],
+				combo: [
+
+				]
+			}
 		},
 		actions: {
 			// Get action
@@ -9,7 +24,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				fetch("http://127.0.0.1:8000/api/users/")
 				.then(res=>res.json())
 				.then(data=>{
-					console.log(data);
+					// console.log(data);
 					setStore({users:data});
 				});
 			},
@@ -17,7 +32,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				fetch("http://127.0.0.1:8000/api/rolls/")
 				.then(res=>res.json())
 				.then(data=>{
-					console.log(data);
+					// console.log(data);
 					setStore({rolls:data});
 				});
 			},
@@ -25,7 +40,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				fetch("http://127.0.0.1:8000/api/bases/")
 				.then(res=>res.json())
 				.then(data=>{
-					console.log(data);
+					// console.log(data);
 					setStore({bases:data});
 				});
 			},
@@ -33,7 +48,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				fetch("http://127.0.0.1:8000/api/salsas/")
 				.then(res=>res.json())
 				.then(data=>{
-					console.log(data);
+					// console.log(data);
 					setStore({toppings:data});
 				});
 			},
@@ -41,7 +56,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				fetch("http://127.0.0.1:8000/api/agregados/")
 				.then(res=>res.json())
 				.then(data=>{
-					console.log(data);
+					// console.log(data);
 					setStore({aggregates:data});
 				});
 			},
@@ -49,7 +64,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				fetch("http://127.0.0.1:8000/api/test/")
 				.then(res=>res.json())
 				.then(data=>{
-					console.log(data);
+					// console.log(data);
 					setStore({test:data});
 				});
 			},
@@ -57,8 +72,24 @@ const getState = ({ getStore, getActions, setStore }) => {
 				fetch("http://127.0.0.1:8000/api/combos/")
 				.then(res=>res.json())
 				.then(data=>{
-					console.log(data);
+					// console.log(data);
 					setStore({combos:data});
+				});
+			},
+			getAllOffers:()=>{
+				fetch("http://127.0.0.1:8000/api/offers/")
+				.then(res=>res.json())
+				.then(data=>{
+					// console.log(data);
+					setStore({offers:data});
+				});
+			},
+			getAllCarousels:()=>{
+				fetch("http://127.0.0.1:8000/api/carousels/")
+				.then(res=>res.json())
+				.then(data=>{
+					// console.log(data);
+					setStore({carousels:data});
 				});
 			},
 			// Post action
@@ -75,7 +106,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 				.then(resp=>resp.json())
 				.then(data=>{
-					console.log(data);
+					// console.log(data);
 					setStore({user: data});
 				});
 				return true;
@@ -94,7 +125,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 				.then(res=>res.json())
 				.then(message=>{
-					console.log(message);
+					// console.log(message);
 					// setStore({data:data}) si es necesrio
 				})
 				.catch(error=>console.log(error));
@@ -114,7 +145,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 				.then(res=>res.json())
 				.then(data=>{
-					console.log(data);
+					// console.log(data);
 					// setStore({data:data}) si es necesrio
 				})
 				.catch(error=>console.log(error));

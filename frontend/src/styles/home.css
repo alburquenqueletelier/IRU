@@ -10,14 +10,6 @@ h1,h2,h3,h4,h5 {
     font-family: 'Billarkdemo', sans-serif !important;
 }
 
-.carousel .carousel-item {
-    height: 600px;
-}
-  
-.carousel-item img {
-    object-fit: cover;
-}
-
 #home {
     /* background-image: url("http://127.0.0.1:8000/media/rolls/fondo iru.png");
     background-size: contain; */

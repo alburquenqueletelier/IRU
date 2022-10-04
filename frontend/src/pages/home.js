@@ -4,6 +4,7 @@ import "../styles/home.css";
 
 import { ProductCard } from "../components/product_card";
 import { Registerform } from "../components/register_form";
+import { Carousel } from "../components/carousel";
 import { Spinners } from "../components/spinners";
 
 export const Home = () => {
@@ -38,69 +39,19 @@ export const Home = () => {
     </div>
     <hr></hr>
     <div className="row row-cols-2 justify-content-center">
-      {store.rolls ?
-        <div id="carouselExampleIndicators" className="carousel slide" data-bs-ride="true">
-        <div className="carousel-indicators">
-          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
-          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-        </div>
-        <div className="carousel-inner">
-          <div className="carousel-item active">
-            <img src="http://127.0.0.1:8000/media/rolls/rolls_veganos_nutella_IEvFv3G.jpeg" className="d-block w-100" alt="..."/>
-          </div>
-          <div className="carousel-item">
-            <img src="http://127.0.0.1:8000/media/rolls/rolls_clasicos_AxCGut6.jpeg" className="d-block w-100" alt="..."/>
-          </div>
-          <div className="carousel-item">
-            <img src="http://127.0.0.1:8000/media/rolls/cinnamon_bittes_4k2tioM.jpeg" className="d-block w-100" alt="..."/>
-          </div>
-        </div>
-        <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-          <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span className="visually-hidden">Previous</span>
-        </button>
-        <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-          <span className="carousel-control-next-icon" aria-hidden="true"></span>
-          <span className="visually-hidden">Next</span>
-        </button>
-      </div>
-        : <div>
-          <div className="spinner-grow text-primary" role="status">
-            <span className="visually-hidden">Loading...</span>
-          </div>
-          <div className="spinner-grow text-secondary" role="status">
-            <span className="visually-hidden">Loading...</span>
-          </div>
-          <div className="spinner-grow text-success" role="status">
-            <span className="visually-hidden">Loading...</span>
-          </div>
-          <div className="spinner-grow text-danger" role="status">
-            <span className="visually-hidden">Loading...</span>
-          </div>
-          <div className="spinner-grow text-warning" role="status">
-            <span className="visually-hidden">Loading...</span>
-          </div>
-          <div className="spinner-grow text-info" role="status">
-            <span className="visually-hidden">Loading...</span>
-          </div>
-          <div className="spinner-grow text-light" role="status">
-            <span className="visually-hidden">Loading...</span>
-          </div>
-          <div className="spinner-grow text-dark" role="status">
-            <span className="visually-hidden">Loading...</span>
-          </div>
-        </div>
+      {store?.carousels ?
+       <Carousel />
+        : <Spinners />
       }
     </div>
-    <hr id="productos"></hr>
+    <hr id="products"></hr>
     <h1 className="text-center">Rolls</h1>
     <div className="row row-cols-4">
       {store.rolls ?
         store.rolls.map((item, index) => {
           return (
             <div className="col" key={index}>
-              <ProductCard title={item.name} description={item.description} image={item.image} price={item.price} />
+              <ProductCard id={item.id} title={item.name} description={item.description} image={item.image} price={item.price} />
             </div>
           );
         })
@@ -122,6 +73,14 @@ export const Home = () => {
       }
     </div>
     <hr id="register"></hr>
+    <h1 className="text-center">Registrate y Disfruta</h1>
+    <div className="d-flex justify-content-center">
+      <ul className="list-group-numbered">
+        <li className="list-group-item">Haz tus pedidos de forma rápida</li>
+        <li className="list-group-item">Puedes repetir el último pedido</li>
+        <li className="list-group-item">Disfrutar de beneficios</li>
+      </ul>
+    </div>
     <Registerform />
   </div>
   );

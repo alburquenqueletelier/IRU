@@ -3,8 +3,10 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 // Import pages & components
 import { Home } from "./pages/home";
+import { Order } from "./pages/order";
 import { Navbar } from "./components/navbar";
 import { Footer } from "./components/footer";
+import ScrollToTop from "./components/scroll_to_top";
 
 // Import app context
 import injectContext from "./store/appContext";
@@ -18,14 +20,17 @@ const Layout = () => {
   return (
     <div>
       <BrowserRouter basename={basename}>
+      <ScrollToTop>
           <Navbar />
 
           <Routes>
+            <Route element={<Order />} path="/order" />
             <Route element={<Home />} path="/" />
             <Route element={<div className="text-center"><h1>404: Not found!</h1></div>} path="*"/>
           </Routes>
 
           <Footer />
+        </ScrollToTop>
       </BrowserRouter>
     </div>
   );
