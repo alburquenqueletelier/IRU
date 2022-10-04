@@ -20,6 +20,8 @@ router.register(r'agregados', views.AggregateViewSet)
 router.register(r'rolls', views.RollViewSet)
 router.register(r'rolls_amount', views.RollNumComboViewSet)
 router.register(r'combos', views.ComboViewSet)
+router.register(r'offers', views.OfferViewSet)
+router.register(r'carousels', views.CarouselViewSet)
 router.register(r'test', views.TestimageViewSet)
 
 

@@ -103,6 +103,7 @@ class Combo(models.Model):
     name = models.CharField(max_length=150)
     total_rolls = models.IntegerField(validators=[amount_validate], default=1)
     description = models.CharField(max_length=1000, default="Combo IRU")
+    image = models.ImageField(upload_to='rolls', blank=True)
     price = models.IntegerField(default=99999, validators=[min_price])
     sold = models.IntegerField(default=0)
     roll_amount = models.ManyToManyField(RollNumCombo)
@@ -127,10 +128,11 @@ class Offer(models.Model):
 class Carousel(models.Model):
     rolls_images = models.OneToOneField(Roll, on_delete=models.CASCADE, blank=True, null=True)
     combo_images = models.OneToOneField(Combo, on_delete=models.CASCADE, blank=True, null=True)
-    offers = models.OneToOneField(Offer, on_delete=models.CASCADE, blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True, null=True)
+    updated_at = models.DateTimeField(auto_now=True, null=True)
 
     def __str__(self):
-        return f"ID: {self.id} Foto: {self.rolls_images.first().name or self.combo_images.first().name or self.offers.first().name}"
+        return f"ID: {self.id} Foto: {self.rolls_images.name or self.combo_images.name}"
 
 class Testimage(models.Model):
     imagen = models.ImageField(upload_to='rolls', blank=True)

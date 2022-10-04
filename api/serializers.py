@@ -47,12 +47,12 @@ class ComboSerializer(serializers.ModelSerializer):
 class OfferSerializer(serializers.ModelSerializer):
     class Meta:
         model = Offer
-        fields = ('id', 'name', 'total_rolls', 'roll_amount', 'description', 'price')
+        fields = ('id', 'name', 'combo', 'roll', 'discount', 'created_at')
 
 class CarouselSerializer(serializers.ModelSerializer):
     class Meta:
         model = Carousel
-        fields = ('id', 'name', 'total_rolls', 'roll_amount', 'description', 'price')
+        fields = '__all__'
 
 class TestimageSerializer(serializers.ModelSerializer):
     class Meta:
