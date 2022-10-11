@@ -24,10 +24,10 @@ export const Carousel = () => {
                     alt="https://dummyimage.com/700x800/000/fff" />
                 </div>
                 <div className="carousel-item">
-                    <img src={"https://dummyimage.com/600x400/000/fff"} className="d-block w-100" alt="..." />
+                    <img src={store?.carousels && store.rolls.filter(prod=>prod.id==store?.carousels[1]?.rolls_images)[0]?.image} className="d-block w-100" alt="https://dummyimage.com/600x400/000/fff" />
                 </div>
                 <div className="carousel-item">
-                    <img src="https://dummyimage.com/600x400/000/fff" className="d-block w-100" alt="..." />
+                    <img src={store?.carousels && store.rolls.filter(prod=>prod.id==store?.carousels[2]?.rolls_images)[0]?.image} className="d-block w-100" alt="https://dummyimage.com/600x400/000/fff" />
                 </div>
             </div>
             <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">

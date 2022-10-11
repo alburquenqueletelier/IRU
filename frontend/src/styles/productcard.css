@@ -1,4 +1,10 @@
+.img-container {
+    max-height: 200px;
+    max-width: 25vw;
+}
+
 .size-image{
-    object-fit: contain;
-    
+    object-fit: cover;
+    max-height: 200px;
+    max-width: 23vw;
 }

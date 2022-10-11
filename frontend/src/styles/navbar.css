@@ -1,0 +1,20 @@
+nav img {
+    position: relative;
+    width: 100px;
+    right: 27px;
+    bottom: 13px;
+	height: auto;
+	object-fit: cover;
+}
+
+.container-logo-home {
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    /* border: 1px solid red; */
+}
+/* nav img {
+    width: 80px;
+    height: auto;
+    clip-path: inset(20% 25% 37% 25%);
+}*/

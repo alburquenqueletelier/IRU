@@ -25,6 +25,7 @@ const injectContext = PassedComponent => {
 			state.actions.getAllRolls();
 			state.actions.getAllCombos();
 			state.actions.getAllCarousels();
+			if (sessionStorage.getItem("order")) state.actions.loadAllOrder();
 		}, []);
 
 		

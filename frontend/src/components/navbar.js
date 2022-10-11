@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 
-// import styles
+import "../styles/navbar.css";
 
 export const Navbar = () => {
 
@@ -28,14 +28,18 @@ export const Navbar = () => {
 
       <nav className="navbar navbar-expand-md bg-light sticky-top">
         <div className="container-fluid">
-          <a className="navbar-brand" href="/">IRU</a>
+          <a className="navbar-brand" href="/">
+            <div className="container-logo-home">
+              <img src="http://127.0.0.1:8000/media/rolls/logo/logo_timbre.png" alt="logo-home" />
+            </div>
+          </a>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <Link className="nav-link active" aria-current="page" to="/" onClick={()=>{document.querySelector('#products').focus();}}>Productos</Link>
+                <Link className="nav-link active" aria-current="page" to="/products">Productos</Link>
               </li>
               <li className="nav-item">
                 <Link to="/order" className="nav-link" href="#">Pedido</Link>
@@ -49,7 +53,7 @@ export const Navbar = () => {
               <input className="form-control me-2" type="password" placeholder="Constraseña" aria-label="Contraseña" onChange={(e) => setPassword(e.target.value)} />
               <button className="btn btn-outline-primary" type="submit">Login</button>
             </form>
-              <a className="btn btn-outline-primary ms-1" href="#register">Registrate</a>
+            <a className="btn btn-outline-primary ms-1" href="#register">Registrate</a>
           </div>
         </div>
       </nav>

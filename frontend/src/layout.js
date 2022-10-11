@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 // Import pages & components
 import { Home } from "./pages/home";
+import { ProductsView } from "./pages/productsView";
 import { Order } from "./pages/order";
 import { Navbar } from "./components/navbar";
 import { Footer } from "./components/footer";
@@ -25,6 +26,7 @@ const Layout = () => {
 
           <Routes>
             <Route element={<Order />} path="/order" />
+            <Route element={<ProductsView />} path="/products" />
             <Route element={<Home />} path="/" />
             <Route element={<div className="text-center"><h1>404: Not found!</h1></div>} path="*"/>
           </Routes>
