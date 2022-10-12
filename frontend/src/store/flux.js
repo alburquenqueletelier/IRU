@@ -25,7 +25,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			// GET action functions (Consume API)
 			getAllUsers: ()=>{
-				fetch("http://127.0.0.1:8000/api/users/")
+				fetch(process.env.REACT_APP_BACKEND_URL+"/users/")
 				.then(res=>res.json())
 				.then(data=>{
 					// console.log(data);
@@ -33,7 +33,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				});
 			},
 			getAllRolls: ()=>{
-				fetch("http://127.0.0.1:8000/api/rolls/")
+				fetch(process.env.REACT_APP_BACKEND_URL+"/rolls/")
 				.then(res=>res.json())
 				.then(data=>{
 					// console.log(data);
@@ -41,7 +41,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				});
 			},
 			getAllBases:()=>{
-				fetch("http://127.0.0.1:8000/api/bases/")
+				fetch(process.env.REACT_APP_BACKEND_URL+"/bases/")
 				.then(res=>res.json())
 				.then(data=>{
 					// console.log(data);
@@ -49,7 +49,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				});
 			},
 			getAllToppings:()=>{
-				fetch("http://127.0.0.1:8000/api/salsas/")
+				fetch(process.env.REACT_APP_BACKEND_URL+"/salsas/")
 				.then(res=>res.json())
 				.then(data=>{
 					// console.log(data);
@@ -57,7 +57,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				});
 			},
 			getAllAggregates:()=>{
-				fetch("http://127.0.0.1:8000/api/agregados/")
+				fetch(process.env.REACT_APP_BACKEND_URL+"/agregados/")
 				.then(res=>res.json())
 				.then(data=>{
 					// console.log(data);
@@ -65,7 +65,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				});
 			},
 			getAllCombos:()=>{
-				fetch("http://127.0.0.1:8000/api/combos/")
+				fetch(process.env.REACT_APP_BACKEND_URL+"/combos/")
 				.then(res=>res.json())
 				.then(data=>{
 					// console.log(data);
@@ -73,7 +73,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				});
 			},
 			getAllOffers:()=>{
-				fetch("http://127.0.0.1:8000/api/offers/")
+				fetch(process.env.REACT_APP_BACKEND_URL+"/offers/")
 				.then(res=>res.json())
 				.then(data=>{
 					// console.log(data);
@@ -81,7 +81,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				});
 			},
 			getAllCarousels:()=>{
-				fetch("http://127.0.0.1:8000/api/carousels/")
+				fetch(process.env.REACT_APP_BACKEND_URL+"/carousels/")
 				.then(res=>res.json())
 				.then(data=>{
 					// console.log(data);
@@ -89,7 +89,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				});
 			},
 			// getAllTest:()=>{
-			// 	fetch("http://127.0.0.1:8000/api/test/")
+			// 	fetch(process.env.REACT_APP_BACKEND_URL+"/test/")
 			// 	.then(res=>res.json())
 			// 	.then(data=>{
 			// 		// console.log(data);
@@ -98,7 +98,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// },
 			// POST action (Consume API)
 			postLogin: (username, password) => {
-				fetch("http://127.0.0.1:8000/api/token/", {
+				fetch(process.env.REACT_APP_BACKEND_URL+"/token/", {
 					method: 'POST',
 					headers: {
 						"Content-type": "application/json"
@@ -159,7 +159,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				// 	const formdata = new FormData();
 				// 	formdata.append("imagen", image);
 	
-				// 	fetch("http://127.0.0.1:8000/api/test/", {
+				// 	fetch(process.env.REACT_APP_BACKEND_URL+"/test/", {
 				// 		method: 'POST',
 				// 		// headers: {
 				// 		// 	"Content-type": "multipart/form-data",
@@ -200,7 +200,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// 	try{
 			// 		// fetching data from the backend
 			// 		// Cambiar ruta por porecess.env.BACKEND_URL cuando termine la pagina
-			// 		const resp = await fetch("http://127.0.0.1:8000/api/hello");
+			// 		const resp = await fetch(process.env.REACT_APP_BACKEND_URL+"/hello");
 			// 		const data = await resp.json();
 			// 		setStore({ message: data.mssg });
 			// 		// don't forget to return something, that is how the async resolves

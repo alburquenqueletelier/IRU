@@ -36,7 +36,7 @@ SECRET_KEY = env('SECRET_KEY')
 # False if not in os.environ because of casting above
 DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['localhost']
 
 # White listing the localhost:3000 port
 # for React
