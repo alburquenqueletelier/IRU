@@ -3,6 +3,7 @@
 
 # track this file .gitignore (i.e. do NOT ignore it)
 !.gitignore
+!.env.example
 
 # ignore log files and databases
 *.log
@@ -13,7 +14,6 @@ migrations/
 rolls/
 manage.py
 .env
-settings.py
 
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
