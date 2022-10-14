@@ -1,11 +1,56 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useForm } from "react-hook-form";
 import ReCAPTCHA  from "react-google-recaptcha";
 
 export const Registerform = () => {
-    const { register, handleSubmit, watch, formState: { errors } } = useForm(); 
-    const onSubmit = (data, e) => console.log(data, e);
+    const { register, handleSubmit, getValues, formState: { errors } } = useForm(); 
+    const captchaRef = useRef();
+    const onSubmit = async (data, e) => {
+        e.preventDefault();
+        const token = await captchaRef.current.executeAsync();
+        captchaRef.current.reset();
+        // console.log(data);
+        var csrftoken = getCookie('csrftoken');
+        fetch(process.env.REACT_APP_BACKEND_URL+'/views/register_validate', {
+            method: 'POST',
+            headers: {
+                "Content-type": "application/json",
+                'X-CSRFToken': csrftoken
+            },
+            body: JSON.stringify({
+                token: token,
+                data: data
+            })
+        })
+        .then(resp=>{
+            if (resp.status == 200) return resp.json();
+            else throw new Error(resp);
+        })
+        .then(data=>{
+            console.log(data);
+        })
+        .catch(error=>console.log(error));
+        // console.log(data, e, "token: ", token);
+        captchaRef.current.reset();
+
+    };
     const onError = (errors, e) => console.log("Errores");
+
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
 
     const validateAtSign = (email) =>{
         let count = 0;
@@ -33,7 +78,7 @@ export const Registerform = () => {
             <div className="form-floating mb-3 col-4">
                 <input name="name" className="form-control" type="text" id="floatingName" placeholder="name" {...register("name", {required: true})} />
                 {errors.name?.type === 'required' && <p className="text-danger" role="alert">Ingresa tu nombre o un alias</p>}
-                <label htmlFor="floatingName">Nombre <span className="text-danger"> *</span></label>
+                <label htmlFor="floatingName">Nombre o Alias <span className="text-danger"> *</span></label>
             </div>
             <div className="form-floating mb-3 col-4">
                 <input name="lastname" className="form-control" type="text" id="floatingLastname" placeholder="apellido" {...register("lastname")} />
@@ -55,12 +100,42 @@ export const Registerform = () => {
                 <label htmlFor="floatingSubject">Telefono <span className="text-danger"> *</span></label>
             </div>
             <div className="w-100"></div>
-            <div className="form-floating col-6">
+            <div className="form-floating mb-3 col-4">
+                <input name="password" type="password" className="form-control" id="floatingpassword" placeholder="Contraseña" {...register("password", {required: true })} aria-invalid={errors.password ? "true" : "false"} />
+                {errors.password?.type === 'required' && <p className="text-danger" role="alert">Debes ingresar una contraseña</p>}
+                <label htmlFor="floatingpassword">Contraseña <span className="text-danger"> *</span></label>
+            </div>
+            <div className="form-floating mb-3 col-4">
+                <input name="password2" type="password" className="form-control" id="floatingpassword2" placeholder="Repite contraseña" {...register("password2", 
+                {
+                required: true, 
+                validate: {matchPassword: v=> {
+                    const {password} = getValues();
+                    return password==v;
+                }}}
+                )} 
+                aria-invalid={errors.password2 ? "true" : "false"} 
+                />
+                {errors.password2?.type === 'required' && <p className="text-danger" role="alert">Debes repetir la contraseña</p>}
+                {errors.password2?.type === 'matchPassword' && <p className="text-danger" role="alert">Las contraseñas deben coincidir</p>}
+                <label htmlFor="floatingpassword2">Repite contraseña <span className="text-danger"> *</span></label>
+            </div>
+
+            <div className="w-100"></div>
+            <div className="form-floating col-8">
                 <input type="text" className="form-control" id="floatingTextarea" placeholder="Address" {...register("address")} />
                 <label htmlFor="floatingTextarea">Dirección</label>
             </div>
             <div className="w-100"></div>
-            <ReCAPTCHA sitekey={process.env.REACT_APP_SITE_KEY}/>
+            <div className="col-md-4 col-auto mt-3">
+            <ReCAPTCHA 
+            size="invisible"
+            sitekey={process.env.REACT_APP_SITE_KEY}
+            ref={captchaRef}
+            />
+
+            </div>
+            <div className="w-100"></div>
             <div className="col-auto">
                 <button type="submit" className="btn btn-primary mt-3" id="liveAlertBtn">Registarse</button>
             </div>
