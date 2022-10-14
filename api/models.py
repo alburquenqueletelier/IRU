@@ -42,6 +42,9 @@ def phone_validate(value):
 class Address(models.Model):
     street = models.CharField(max_length=300)
 
+    def __str__(self):
+        return self.street
+
 class User(AbstractBaseUser):
     email = models.EmailField(max_length=150, unique=True)
     name = models.CharField(max_length=50)

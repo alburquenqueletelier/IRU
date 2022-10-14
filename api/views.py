@@ -11,6 +11,7 @@ from django.http import JsonResponse
 from django.contrib.auth.models import User #, Permission, Group
 # from django.shortcuts import get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.hashers import make_password, check_password
 
  
 # import view sets from the REST framework
@@ -26,6 +27,8 @@ from .serializers import *
 from .models import *
 from api import serializers
 
+
+################# API FUNCTIONS #################
 @csrf_exempt
 def register_validate(request):
     if request.method != 'POST':
@@ -44,12 +47,16 @@ def register_validate(request):
         # )
         # return JsonResponse({"response":"Human 👨 👩"}, status=200) 
         try:
+            password = data.get("password")
+            password2 = data.get("password2")
+            if password and password2 and password != password2:
+                raise ValidationError("Passwords don't match")
             new_user = User.objects.create(
                 name=data.get('name'), 
                 email=data.get('email'), 
                 phone=data.get('phone'),
                 lastname=data.get('lastname') if 'lastname' in data else None, 
-                password=data.get('password')
+                password=make_password(data.get('password'))
             )
             new_user.save()
             if data.get('address'):
@@ -61,6 +68,35 @@ def register_validate(request):
             return JsonResponse({"response": "Algo salió mal con el registro, intentalo más tarde"}, 500)
     else:
         return JsonResponse({"response":"Robot 🤖"}, status=406)
+
+@csrf_exempt
+def login_token(request):
+    if request.method != "POST":
+        return JsonResponse({"error": "Method not allowed"}, 400)
+    json_data = json.loads(request.body)
+    data = json_data.get('data') 
+    user = User.objects.filter(email=data.get('email')).first()
+    try:
+        if check_password(data.get('password'), user.password):
+            return JsonResponse({
+                "token": "token jwt",
+                "user": UserSerializer(user).data
+            })
+    except:
+        return JsonResponse({"response": "Usuario y/o contraseña incorrecta"})
+
+
+
+
+####################### API REST VIEWS ####################
+
+class AddressViewSet(viewsets.ModelViewSet):
+    """
+    A simple ViewSet for listing or retrieving Address.
+    """
+    queryset = Address.objects.all()
+    serializer_class = AddressSerializer
+    # permission_classes = (DjangoModelPermissions, )
 
 class UserViewSet(viewsets.ModelViewSet):
     """

@@ -13,6 +13,7 @@ from api import views
 
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
+router.register(r'addresses', views.AddressViewSet)
 router.register(r'users', views.UserViewSet)
 router.register(r'bases', views.BaseViewSet)
 router.register(r'salsas', views.ToppingViewSet)

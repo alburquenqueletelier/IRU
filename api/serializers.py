@@ -7,11 +7,16 @@ from rest_framework import serializers
 from .models import *
  
 # create a serializer class
+class AddressSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Address
+        fields = ('id', 'street')
+
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('id', 'username', 'first_name', 'last_name', 'email', 'is_superuser')
+        fields = ('__all__')
         # fields = '__all__'
 
 class BaseSerializer(serializers.ModelSerializer):

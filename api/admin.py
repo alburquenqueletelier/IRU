@@ -58,7 +58,7 @@ class UserAdmin(BaseUserAdmin):
     list_filter = ('is_admin',)
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
-        ('Personal info', {'fields': ('name', 'lastname', 'phone', 'address',)}),
+        ('Personal info', {'fields': ('name', 'lastname', 'phone', 'addresses',)}),
         ('Permissions', {'fields': ('is_admin',)}),
     )
     # add_fieldsets is not a standard ModelAdmin attribute. UserAdmin
@@ -92,6 +92,7 @@ class OfferAdmin(admin.ModelAdmin):
     list_display = ["id", "name", "combo", "roll", "discount"]
 
 admin.site.register(User, UserAdmin)
+admin.site.register(Address)
 admin.site.register(Base, SuppliesAdmin)
 admin.site.register(Topping, ToppingAdmin)
 admin.site.register(Aggregate, SuppliesAdmin)

@@ -97,22 +97,45 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// 	});
 			// },
 			// POST action (Consume API)
-			postLogin: (username, password) => {
-				fetch(process.env.REACT_APP_BACKEND_URL+"/token/", {
+			login: (username, password) => {
+				// Esta funcion debiese estar general en el flux ! 
+				function getCookie(name) {
+					let cookieValue = null;
+					if (document.cookie && document.cookie !== '') {
+						const cookies = document.cookie.split(';');
+						for (let i = 0; i < cookies.length; i++) {
+							const cookie = cookies[i].trim();
+							// Does this cookie string begin with the name we want?
+							if (cookie.substring(0, name.length + 1) === (name + '=')) {
+								cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+								break;
+							}
+						}
+					}
+					return cookieValue;
+				}
+				var csrftoken = getCookie('csrftoken');
+				fetch(process.env.REACT_APP_BACKEND_URL+'/views/login_token', {
 					method: 'POST',
 					headers: {
-						"Content-type": "application/json"
+						"Content-type": "application/json",
+						'X-CSRFToken': csrftoken
 					},
 					body: JSON.stringify({
-						username: username,
+						email: username,
 						password: password
 					})
 				})
-				.then(resp=>resp.json())
+				.then(resp=>{
+					if (resp.status == 200) return resp.json();
+					else throw new Error(resp);
+				})
 				.then(data=>{
-					// console.log(data);
+					console.log(data);
 					setStore({user: data});
-				});
+				})
+				.catch(error=>console.log(error));
+				// console.log(data, e, "token: ", token);
 				return true;
 			},
 			postAddOrder:(product, id, amount)=>{
