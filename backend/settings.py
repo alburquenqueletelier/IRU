@@ -36,7 +36,7 @@ SECRET_KEY = env('SECRET_KEY')
 # False if not in os.environ because of casting above
 DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = ['localhost']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 # White listing the localhost:3000 port
 # for React
@@ -107,6 +107,8 @@ DATABASES = {
     }
 }
 
+# To customize django User model: set AUTH_USER_MODEL = 'name_of_your_app.name_of_model'
+AUTH_USER_MODEL = 'api.User'
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators

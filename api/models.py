@@ -1,13 +1,13 @@
-from cProfile import label
-from distutils.command.upload import upload
 from email.policy import default
-from pyexpat import model
-from unicodedata import name
 from django.db import models
-from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.utils.html import mark_safe
 from django.core.validators import MaxValueValidator, MinValueValidator
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
+from django.utils import timezone
+from django.core.mail import send_mail
+
+from .managers import UserManager
 
 # Business Vars
 max_combo = 6
@@ -25,7 +25,77 @@ def amount_validate(value):
             f'No puede ser negativo ni mayor a {max_combo}'
         )
 
+def phone_validate(value):
+    if len(value) != 9:
+        raise ValidationError(
+            f"Número telefónico debe tener 9 dígitos"
+        )
+    try:
+        int(value, 10)
+    except ValueError:
+        raise ValidationError(
+            f"Número invalido, no debe contener simbolos ni letras"
+        )
+
 # Create your models here.
+#### Models related to Users ####
+class Address(models.Model):
+    street = models.CharField(max_length=300)
+
+class User(AbstractBaseUser):
+    email = models.EmailField(max_length=150, unique=True)
+    name = models.CharField(max_length=50)
+    lastname = models.CharField(max_length=100, blank=True, null=True)
+    phone = models.CharField(max_length=9, validators=[phone_validate], default='999999999', unique=True)
+    is_admin = models.BooleanField(default=False)
+    is_staff = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
+    date_joined = models.DateTimeField(default=timezone.now)
+    addresses = models.ManyToManyField(Address)
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['name', 'phone']
+
+    objects = UserManager()
+
+    def has_perm(self, perm, obj=None):
+        "Does the user have a specific permission?"
+        # Simplest possible answer: Yes, always
+        return True
+
+    def has_module_perms(self, app_label):
+        "Does the user have permissions to view the app `app_label`?"
+        # Simplest possible answer: Yes, always
+        return True
+
+    @property
+    def is_staff(self):
+        "Is the user a member of staff?"
+        # Simplest possible answer: All admins are staff
+        return self.is_admin
+
+    def __str__(self):
+        return self.email
+
+    def get_full_name(self):
+        '''
+        Returns the first_name plus the last_name, with a space in between.
+        '''
+        full_name = '%s %s' % (self.name, self.lastname)
+        return full_name.strip()
+
+    def get_short_name(self):
+        '''
+        Returns the short name for the user.
+        '''
+        return self.name
+
+    def email_user(self, subject, message, from_email=None, **kwargs):
+        '''
+        Sends an email to this User.
+        '''
+        send_mail(subject, message, from_email, [self.email], **kwargs)
+
+#### Models related to products ####
 class Base(models.Model):
     name=models.CharField(max_length=150)
     brand=models.CharField(max_length=150, blank=True, null=True)
