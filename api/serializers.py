@@ -8,15 +8,21 @@ from .models import *
  
 # create a serializer class
 class AddressSerializer(serializers.ModelSerializer):
+    
     class Meta:
         model = Address
-        fields = ('id', 'street')
+        fields = ('__all__')
 
 
 class UserSerializer(serializers.ModelSerializer):
+    addresses = serializers.SlugRelatedField(
+        many=True,
+        read_only=True,
+        slug_field='street'
+    )
     class Meta:
         model = User
-        fields = ('__all__')
+        exclude = ('is_admin', 'is_active', 'date_joined')
         # fields = '__all__'
 
 class BaseSerializer(serializers.ModelSerializer):
@@ -35,26 +41,66 @@ class AggregateSerializer(serializers.ModelSerializer):
         fields = ('id', 'name', 'brand', 'description')
 
 class RollSerializer(serializers.ModelSerializer):
+    base = serializers.SlugRelatedField(
+        queryset=Base.objects.all(),
+        slug_field='name'
+    )
+    topping = serializers.SlugRelatedField(
+        many=True,
+        queryset=Topping.objects.all(),
+        slug_field='name'
+    )
+    aggregate = serializers.SlugRelatedField(
+        queryset=Aggregate.objects.all(),
+        slug_field='name',
+        allow_null=True
+    )
     class Meta:
         model = Roll
-        fields = ('id', 'name', 'description', 'price', 'image', 'base', 'topping', 'aggregate')
+        fields = ('__all__')
 
 class RollNumComboSerializer(serializers.ModelSerializer):
+    roll = serializers.SlugRelatedField(
+        queryset=Roll.objects.all(),
+        slug_field='name'
+    )
     class Meta:
         model = RollNumCombo
         fields = ('id', 'roll', 'amount')
 
 class ComboSerializer(serializers.ModelSerializer):
+    roll_amount = serializers.HyperlinkedRelatedField(
+        many=True,
+        queryset=RollNumCombo.objects.all(),
+        view_name='rollnumcombo-detail'
+    )
+
     class Meta:
         model = Combo
-        fields = ('id', 'name', 'total_rolls', 'roll_amount', 'description', 'price')
+        fields = ('__all__')
 
 class OfferSerializer(serializers.ModelSerializer):
+    combo = serializers.SlugRelatedField(
+        queryset=Combo.objects.all(),
+        slug_field='name'
+    )
+    roll = serializers.SlugRelatedField(
+        queryset=Roll.objects.all(),
+        slug_field='name'
+    )
     class Meta:
         model = Offer
         fields = ('id', 'name', 'combo', 'roll', 'discount', 'created_at')
 
 class CarouselSerializer(serializers.ModelSerializer):
+    rolls_images = serializers.SlugRelatedField(
+        queryset=Roll.objects.all(),
+        slug_field='name'
+    )
+    combo_images = serializers.SlugRelatedField(
+        queryset=Combo.objects.all(),
+        slug_field='name'
+    )
     class Meta:
         model = Carousel
         fields = '__all__'
