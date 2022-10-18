@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
-import "../styles/home.css";
 
 import { ProductCard } from "../components/product_card";
 import { Spinners } from "../components/spinners";
@@ -12,12 +11,14 @@ export const ProductsView = () => {
   return (
     <div className="container-fluid">
     {/* <h1 className="text-center">I Roll You</h1> */}
+    <div className="container-sm">
+
     <h1 className="text-center">Rolls</h1>
-    <div className="row row-cols-md-4 row-cols-sm-3 row-cols-2">
+    <div className="row row-cols-md-4 row-cols-1">
       {store.rolls ?
         store.rolls.map((item, index) => {
           return (
-            <div className="col" key={index}>
+            <div className="col d-flex align-items-stretch" key={index}>
               <ProductCard 
               id={item.id} 
               title={item.name} 
@@ -48,6 +49,7 @@ export const ProductsView = () => {
         })
         : <Spinners />
       }
+    </div>
     </div>
  
   </div>

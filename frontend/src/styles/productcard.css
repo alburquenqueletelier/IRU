@@ -3,8 +3,39 @@
     max-width: 25vw;
 }
 
-.size-image{
+.size-image {
     object-fit: cover;
     max-height: 200px;
     max-width: 23vw;
 }
+
+.description {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.description::after{
+    content: ' Ver Más';
+    white-space: normal;
+}
+
+.description:hover{
+    white-space: normal;
+    overflow: visible;
+    cursor: pointer;
+}
+
+.description:hover::after{
+    content: '';
+}
+
+.counter{
+    display: inline-block;
+    width: 30px;
+    font-size: large;
+    font-weight: 800;
+    border: 1px solid black;
+    border-radius: 50%;
+}
+

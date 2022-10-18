@@ -73,8 +73,7 @@ def register_validate(request):
 def login_token(request):
     if request.method != "POST":
         return JsonResponse({"error": "Method not allowed"}, 400)
-    json_data = json.loads(request.body)
-    data = json_data.get('data') 
+    data = json.loads(request.body)
     user = User.objects.filter(email=data.get('email')).first()
     try:
         if check_password(data.get('password'), user.password):

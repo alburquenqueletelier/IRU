@@ -20,6 +20,7 @@ export const Navbar = () => {
       console.log('Debes ingresar una clave');
       return false;
     }
+    console.log(username, password);
     return actions.login(username, password);
   };
 

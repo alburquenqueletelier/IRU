@@ -16,15 +16,18 @@ export const ProductCard = (props) => {
             <div className="img-container">
                 <img src={props.image} className="card-img-top size-image" alt="..." />
             </div>
-            <div className="card-body">
-                <h5 className="card-title">{props.title}</h5>
-                <p className="card-text">{props.description}</p>
+            <div className="card-body d-flex flex-column">
+                <h6 className="card-title">{props.title}</h6>
+                <p className="card-text description">{props.description}</p>
                 <p className="card-text text-success">${props.price}</p>
-                {props.buttonMessage !== 'Remover' 
-                ? <p className="card-text text-center"><button className="btn btn-outline-danger" onClick={()=>changeAmount(amount-1)}>-</button><span>{amount}</span><button className="btn btn-outline-primary" onClick={()=>changeAmount(amount+1)}>+</button></p>
-                :  <p className="card-text">Cantidad: <span>{amount}</span></p>
+                {props.buttonMessage !== 'Remover'
+                    ? <p className="card-text text-center align-items-center"><button className="btn btn-outline-danger" onClick={() => changeAmount(amount - 1)}>-</button><span className="counter align-middle">{amount}</span><button className="btn btn-outline-primary" onClick={() => changeAmount(amount + 1)}>+</button></p>
+                    : <p className="card-text">Cantidad: <span>{amount}</span></p>
                 }
-                <button className={"btn btn-" + (props.buttonMessage === 'Remover' ? 'danger' : 'primary')} onClick={()=>props.addOrRemove("rolls", props.id, props.buttonMessage == "Añadir" && amount)}>{props.buttonMessage}</button>
+                <div className="mt-auto row row-cols-2">
+                <button className={"btn btn-" + (props.buttonMessage === 'Remover' ? 'danger' : 'primary')} onClick={() => props.addOrRemove("rolls", props.id, props.buttonMessage == "Añadir" && amount)}>{props.buttonMessage}</button>
+                <button className="btn btn-outline-success">Detalles</button>
+                </div>
             </div>
         </div>
     );
@@ -32,8 +35,8 @@ export const ProductCard = (props) => {
 
 ProductCard.propsTypes = {
     id: PropTypes.number,
-	title: PropTypes.string,
-	description: PropTypes.string,
-	image: PropTypes.string,
+    title: PropTypes.string,
+    description: PropTypes.string,
+    image: PropTypes.string,
     price: PropTypes.number
 };
