@@ -139,6 +139,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 				return true;
 			},
 			postAddOrder:(product, id, amount)=>{
+				if (amount==0){
+					return false;
+				} 
 				const { rolls, combos, order } = getStore();
 				console.log('pase por addorder');
 				let add = {
