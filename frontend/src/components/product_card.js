@@ -27,7 +27,7 @@ export const ProductCard = (props) => {
                 <p className="card-text description">{props.description}</p>
                 <p className="card-text text-success">${props.price}</p>
                 {props.buttonMessage !== 'Quitar'
-                    ? <p className="mt-auto card-text text-center align-items-center"><button className="btn btn-outline-danger" onClick={() => changeAmount(amount - 1)}>-</button><span className="counter align-middle">{amount}</span><button className="btn btn-outline-primary" onClick={() => changeAmount(amount + 1)}>+</button><span className="ms-2 align-middle total-per-product">{amount != 0 ? valueToPrice(amount,props.price) : ""}</span></p>
+                    ? <p className="mt-auto align-items-center"><button className="btn btn-outline-danger" onClick={() => changeAmount(amount - 1)}>-</button><span className="counter text-center align-middle">{amount}</span><button className="btn btn-outline-primary" onClick={() => changeAmount(amount + 1)}>+</button><span className="ms-2 align-middle total-per-product">{amount != 0 ? valueToPrice(amount,props.price) : ""}</span></p>
                     : <div className="mt-auto d-flex justify-content-around"><p className="card-text">Cantidad: <span>{amount}</span> </p> <p className="card-text">Valor: <span>{valueToPrice(amount,props.price)}</span></p></div>
                 }
                 <div className="mt-auto row row-cols-2">
