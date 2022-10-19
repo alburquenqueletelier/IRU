@@ -1,12 +1,12 @@
 .img-container {
-    max-height: 200px;
-    max-width: 25vw;
+    max-height: 230px;
+    max-width: 100%;
 }
 
 .size-image {
-    object-fit: cover;
-    max-height: 200px;
-    max-width: 23vw;
+    object-fit: fill;
+    max-height: 230px;
+    max-width: 100%;
 }
 
 .card{
@@ -50,3 +50,12 @@
     font-weight: 800;
 }
 
+@media only screen and (max-width: 767px){
+    .img-container {
+        max-height: 300px;
+    }
+    
+    .size-image {
+        max-height: 300px;
+    }
+}
