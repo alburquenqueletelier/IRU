@@ -9,6 +9,10 @@
     max-width: 23vw;
 }
 
+.card-body > div p{
+    font-size: larger;
+}
+
 .description {
     white-space: nowrap;
     overflow: hidden;
@@ -35,7 +39,10 @@
     width: 30px;
     font-size: large;
     font-weight: 800;
-    border: 1px solid black;
-    border-radius: 50%;
+}
+
+.total-per-product{
+    font-size: large;
+    font-weight: 800;
 }
 

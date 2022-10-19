@@ -18,17 +18,17 @@ export const ProductsView = () => {
       {store.rolls ?
         store.rolls.map((item, index) => {
           return (
-            <div className="col d-flex align-items-stretch" key={index}>
+            <div className="col d-flex align-items-stretch mb-1" key={index}>
               <ProductCard 
               id={item.id} 
               title={item.name} 
               description={item.description} 
               image={item.image} price={item.price} 
-              amount={store.order.rolls?.length > 0 ? store.order.rolls.filter(roll=>roll.id == item.id)[0]?.amount : 1}
+              amount={store.order.rolls.filter(roll=>roll.id == item.id)?.length > 0 ? store.order.rolls.filter(roll=>roll.id == item.id)[0]?.amount : 0}
               addOrRemove={
                 store?.order.rolls.filter(roll=>roll.id == item.id).length == 1 ? actions.deleteOrder : actions.postAddOrder
               }
-              buttonMessage={store?.order.rolls.filter(roll=>roll.id == item.id).length == 1 ? "Remover" : "Añadir"} 
+              buttonMessage={store?.order.rolls.filter(roll=>roll.id == item.id).length == 1 ? "Quitar" : "Añadir"} 
               />
             </div>
           );
