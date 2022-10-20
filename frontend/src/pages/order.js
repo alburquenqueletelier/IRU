@@ -43,7 +43,7 @@ export const Order = () => {
                                     <OrderCard
                                         key={index}
                                         id={item.id}
-                                        type="rolls"
+                                        product="rolls"
                                         title={aux?.name}
                                         price={aux?.price}
                                         amount={item.amount}
@@ -71,7 +71,7 @@ export const Order = () => {
                             : <Spinners />
                     }
                 </div>
-                <div className="bg-white d-none d-md-flex flex-column text-center align-items-stretch rounded" style={{height: "fit-content", position: "sticky", top:"90px"}}>
+                <div className="bg-white d-none d-md-flex flex-column text-center align-items-stretch rounded p-2" style={{height: "fit-content", position: "sticky", top:"90px"}}>
                     <h2>Detalles compra</h2>
                     <ul className="list-group list-group-flush">
                         {store.order.rolls && store.order.rolls.map((item, index) => {

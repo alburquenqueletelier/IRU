@@ -34,7 +34,7 @@ export const OrderCard = (props) => {
                         </div>
                     </div>
                     <div className="card-footer">
-                        <button className="btn btn-danger" onClick={() => actions.deleteOrder(props.type, props.id)}>Quitar</button>
+                        <button className="btn btn-danger" onClick={() => actions.deleteOrder(props.product, props.id)}>Quitar</button>
                     </div>
                 </div>
             </div>

@@ -39,11 +39,18 @@ export const Navbar = () => {
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li className="nav-item">
-                <Link className="nav-link active" aria-current="page" to="/products">Productos</Link>
+              <li className="nav-item ">
+                <Link className="nav-link" aria-current="page" to="/products">
+                  Productos
+                </Link>
               </li>
               <li className="nav-item">
-                <Link to="/order" className="nav-link" href="#">Pedido</Link>
+                <Link to="/order" className="nav-link" href="#">
+                  Pedido
+                {(store.order.rolls?.length > 0 || store.order.combos?.length > 0 )&&
+                  <span className="badge text-bg-secondary">{store.order.rolls.length + store.order.combos.length}</span>
+                }
+                </Link>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="#">Contacto</a>
