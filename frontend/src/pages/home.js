@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import "../styles/home.css";
 
-import { ProductCard } from "../components/product_card";
 import { Registerform } from "../components/register_form";
 import { Carousel } from "../components/carousel";
 import { Spinners } from "../components/spinners";
@@ -40,10 +40,10 @@ export const Home = () => {
           <h1 className="text-center">¿Como Pedir?</h1>
           <p className="text-center">A través de Whatsapp o Instagram</p>
           <ol >
-            <li>Dirigete a la sección productos</li>
+            <li>Dirigete a la sección <Link to="/products">productos</Link></li>
             <li>Busca lo que desees, selecciona la cantidad y presiona añadir</li>
             <li>Dirigete a la sección pedido y verifica tus productos</li>
-            <li>Ingresa tu dirección y método de pago (transferencia o efectivo)</li>
+            <li>Selecciona metodo de entrega y de pago</li>
             <li>Realiza tu pedido y listo !</li>
           </ol>
         </div>
@@ -56,7 +56,7 @@ export const Home = () => {
           <p>Delivery con costo adicional, gratis por compras sobre $15.000</p>
           <div className="table-responsive">
 
-          <table className="table table-borderless">
+          <table className="table table-borderless m-auto w-auto">
             <thead>
               <tr>
                 <td>
