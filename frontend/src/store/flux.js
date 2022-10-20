@@ -15,6 +15,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 			/////////////////////////////////////
 			// Onload from storage //
 			/////////////////////////////////////
+			loadAllRolls: ()=>{
+				setStore({rolls: JSON.parse(sessionStorage.getItem('rolls'))});
+			},
+			loadAllCombos: ()=>{
+				setStore({combos: JSON.parse(sessionStorage.getItem('combos'))});
+			},
+			loadAllCarousels: ()=>{
+				setStore({carousels: JSON.parse(sessionStorage.getItem('carousels'))});
+			},
 			loadAllOrder: ()=>{
 				const {order} = getStore();
 				let saveOrder = JSON.parse(sessionStorage.getItem("order"));
@@ -33,6 +42,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				.then(res=>res.json())
 				.then(data=>{
 					// console.log(data);
+					sessionStorage.setItem('user', JSON.stringify(data));
 					setStore({users:data});
 				});
 			},
@@ -41,6 +51,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				.then(res=>res.json())
 				.then(data=>{
 					// console.log(data);
+					sessionStorage.setItem('rolls', JSON.stringify(data));
 					setStore({rolls:data});
 				});
 			},
@@ -49,6 +60,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				.then(res=>res.json())
 				.then(data=>{
 					// console.log(data);
+					sessionStorage.setItem('bases', JSON.stringify(data));
 					setStore({bases:data});
 				});
 			},
@@ -57,6 +69,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				.then(res=>res.json())
 				.then(data=>{
 					// console.log(data);
+					sessionStorage.setItem('toppings', JSON.stringify(data));
 					setStore({toppings:data});
 				});
 			},
@@ -65,6 +78,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				.then(res=>res.json())
 				.then(data=>{
 					// console.log(data);
+					sessionStorage.setItem('aggregates', JSON.stringify(data));
 					setStore({aggregates:data});
 				});
 			},
@@ -73,6 +87,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				.then(res=>res.json())
 				.then(data=>{
 					// console.log(data);
+					sessionStorage.setItem('combos', JSON.stringify(data));
 					setStore({combos:data});
 				});
 			},
@@ -81,6 +96,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				.then(res=>res.json())
 				.then(data=>{
 					// console.log(data);
+					sessionStorage.setItem('offers', JSON.stringify(data));
 					setStore({offers:data});
 				});
 			},
@@ -89,6 +105,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				.then(res=>res.json())
 				.then(data=>{
 					// console.log(data);
+					sessionStorage.setItem('carousels', JSON.stringify(data));
 					setStore({carousels:data});
 				});
 			},

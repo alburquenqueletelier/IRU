@@ -22,9 +22,21 @@ const injectContext = PassedComponent => {
 		);
 
 		useEffect(() => {
-			state.actions.getAllRolls();
-			state.actions.getAllCombos();
-			state.actions.getAllCarousels();
+			if (sessionStorage.getItem('rolls')){
+				state.actions.loadAllRolls();
+			} else {
+				state.actions.getAllRolls();
+			}
+			if (sessionStorage.getItem('combos')){
+				state.actions.loadAllCombos();
+			} else {
+				state.actions.getAllCombos();
+			}
+			if (sessionStorage.getItem('carousels')){
+				state.actions.loadAllCarousels();
+			} else {
+				state.actions.getAllCarousels();
+			}
 			if (sessionStorage.getItem("order")) state.actions.loadAllOrder();
 		}, []);
 
