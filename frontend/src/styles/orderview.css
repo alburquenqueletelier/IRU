@@ -1,0 +1,9 @@
+#modal-order-button{
+    position: fixed;
+    top: 100px;
+    right: 40px;
+}
+
+#modal-order-button img{
+    width: 30px;
+}

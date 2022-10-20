@@ -12,7 +12,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			}
 		},
 		actions: {
-			// Onload from storage
+			/////////////////////////////////////
+			// Onload from storage //
+			/////////////////////////////////////
 			loadAllOrder: ()=>{
 				const {order} = getStore();
 				let saveOrder = JSON.parse(sessionStorage.getItem("order"));
@@ -23,7 +25,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 				});
 				return "Carro cargado completamente";
 			},
-			// GET action functions (Consume API)
+			/////////////////////////////////////
+			// GET action functions (Consume API) //
+			/////////////////////////////////////
 			getAllUsers: ()=>{
 				fetch(process.env.REACT_APP_BACKEND_URL+"/users/")
 				.then(res=>res.json())
@@ -96,7 +100,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// 		setStore({test:data});
 			// 	});
 			// },
-			// POST action (Consume API)
+			/////////////////////////////////////
+			// POST action (Consume API) //
+			/////////////////////////////////////
 			login: (username, password) => {
 				// Esta funcion debiese estar general en el flux ! 
 				function getCookie(name) {
@@ -137,6 +143,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 				.catch(error=>console.log(error));
 				// console.log(data, e, "token: ", token);
 				return true;
+			},
+			/////////////////////////////////////
+			// Only Front Functions //
+			/////////////////////////////////////
+			valueToPrice: (amount=1, price) => {
+				let value = amount*price;
+				let response = Number(Number(value).toFixed()).toLocaleString('en');
+				return '$'+response.replace(',','.');
 			},
 			postAddOrder:(product, id, amount)=>{
 				if (amount==0){

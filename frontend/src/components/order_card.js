@@ -27,10 +27,10 @@ export const OrderCard = (props) => {
                 <div className="col-md-8 d-flex flex-column justify-content-between">
                     <div className="card-body justify-content-around d-flex flex-column">
                         <h5 className="card-title">{props.title}</h5>
-                        <div className="d-flex justify-content-around align-items-baseline">
-                            <p className="card-text"><strong className="text-danger">Valor: </strong> {props.price}</p>
+                        <div className="d-flex flex-column flex-lg-row justify-content-lg-around align-items-baseline">
+                            <p className="card-text"><strong className="text-danger">Valor: </strong> {actions.valueToPrice(1, props.price)}</p>
                             <p className="card-text text-center"><button className="btn btn-outline-danger" onClick={() => changeAmount(amount - 1)}>-</button><span className="counter">{amount}</span><button className="btn btn-outline-primary" onClick={() => changeAmount(amount + 1)}>+</button></p>
-                            <p className="card-text"><strong className="text-danger">Total: </strong> {props.price * amount}</p>
+                            <p className="card-text"><strong className="text-danger">Total: </strong> {actions.valueToPrice(amount, props.price)}</p>
                         </div>
                     </div>
                     <div className="card-footer">

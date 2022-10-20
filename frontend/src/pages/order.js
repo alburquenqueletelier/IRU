@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
-import "../styles/home.css";
+import "../styles/orderview.css";
 
 import { Spinners } from "../components/spinners";
 import { OrderCard } from "../components/order_card";
@@ -34,7 +34,7 @@ export const Order = () => {
             <h1>Tu pedido</h1>
             <div className="d-flex justify-content-evenly">
 
-                <div className="row row-cols-1">
+                <div className="row row-cols-1 me-1">
                     {(store.order.combos.length > 0 || store.order.rolls.length > 0)
                         ? <div className="col">
                             {store.order.rolls?.map((item, index) => {
@@ -71,18 +71,18 @@ export const Order = () => {
                             : <Spinners />
                     }
                 </div>
-                <div className="bg-white d-flex flex-column text-center align-items-stretch sticky-md-top" style={{height: "fit-content"}}>
+                <div className="bg-white d-none d-md-flex flex-column text-center align-items-stretch rounded" style={{height: "fit-content", position: "sticky", top:"90px"}}>
                     <h2>Detalles compra</h2>
                     <ul className="list-group list-group-flush">
                         {store.order.rolls && store.order.rolls.map((item, index) => {
                             { total = total + item.amount * store.rolls.filter(roll => roll.id == item.id)[0]?.price; }
                             return <li className="list-group-item d-flex justify-content-between" key={index}>
-                                {store.rolls.filter(roll => roll.id == item.id)[0]?.name} x {item.amount} <span className="ms-1">${item.amount * store.rolls.filter(roll => roll.id == item.id)[0]?.price}</span>
+                                {store.rolls.filter(roll => roll.id == item.id)[0]?.name} x {item.amount} <span className="ms-1">{actions.valueToPrice(item.amount, store.rolls.filter(roll => roll.id == item.id)[0]?.price)}</span>
                             </li>;
                         })}
                         {store.order.combos && store.order.combos.map((item, index) => {
                             return <li className="list-group-item d-flex justify-content-between" key={index}>
-                                {store.combos.filter(combo => combo.id == item.id)[0]?.name} x {item.amount} <span className="ms-1"> ${item.amount * store.combos.filter(combo => combo.id == item.id)[0]?.price}</span>
+                                {store.combos.filter(combo => combo.id == item.id)[0]?.name} x {item.amount} <span className="ms-1"> {actions.valueToPrice(item.amount, store.combos.filter(combo => combo.id == item.id)[0]?.price)}</span>
                             </li>;
                         })}
                     </ul>
@@ -90,7 +90,7 @@ export const Order = () => {
                         Delivery = {
                             total >= 15000
                                 ? "Gratis!"
-                                : !!delivery && "$" + delivery
+                                : !!delivery && actions.valueToPrice(1, delivery)
                         }
                         <div>
                             <input list="ciudades" name="ciudades" placeholder="Selecciona tu localidad" onChange={handleDelivery} />
@@ -101,9 +101,63 @@ export const Order = () => {
                             </datalist>
                         </div>
                     </div>
-                    <p>TOTAL = ${total >= 15000 ? total : total + delivery}</p>
+                    <p>TOTAL = {total >= 15000 ? actions.valueToPrice(1,total) : actions.valueToPrice(1,total + delivery)}</p>
                 </div>
             </div>
+            
+            {/* <!-- Button trigger modal --> */}
+<button id="modal-order-button" type="button" className="btn btn-info rounded-circle d-md-none" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  <img src="https://cdn-icons-png.flaticon.com/512/6957/6957439.png" alt="Pedido" />
+</button>
+
+{/* <!-- Modal --> */}
+<div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div className="modal-dialog">
+    <div className="modal-content">
+      <div className="modal-header">
+        <h1 className="modal-title fs-5" id="exampleModalLabel">Detalles compra</h1>
+        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div className="modal-body">
+      <ul className="list-group list-group-flush">
+                        {store.order.rolls && store.order.rolls.map((item, index) => {
+                            { total = total + item.amount * store.rolls.filter(roll => roll.id == item.id)[0]?.price; }
+                            return <li className="list-group-item d-flex justify-content-between" key={index}>
+                                {store.rolls.filter(roll => roll.id == item.id)[0]?.name} x {item.amount} <span className="ms-1">{actions.valueToPrice(item.amount, store.rolls.filter(roll => roll.id == item.id)[0]?.price)}</span>
+                            </li>;
+                        })}
+                        {store.order.combos && store.order.combos.map((item, index) => {
+                            return <li className="list-group-item d-flex justify-content-between" key={index}>
+                                {store.combos.filter(combo => combo.id == item.id)[0]?.name} x {item.amount} <span className="ms-1"> {actions.valueToPrice(item.amount, store.combos.filter(combo => combo.id == item.id)[0]?.price)}</span>
+                            </li>;
+                        })}
+                    </ul>
+                    <div>
+                        Delivery = {
+                            total >= 15000
+                                ? "Gratis!"
+                                : !!delivery && actions.valueToPrice(1, delivery)
+                        }
+                        <div>
+                            <input list="ciudades" name="ciudades" placeholder="Selecciona tu localidad" onChange={handleDelivery} />
+                            <datalist id="ciudades">
+                                {locationDelivery.map((item, index) => {
+                                    return <option key={index} value={item.name}>{item.price}</option>;
+                                })}
+                            </datalist>
+                        </div>
+                    </div>
+                    <p>TOTAL = {total >= 15000 ? actions.valueToPrice(1,total) : actions.valueToPrice(1,total + delivery)}</p>
+      </div>
+      <div className="modal-footer">
+        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" className="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 
         </div>
 
