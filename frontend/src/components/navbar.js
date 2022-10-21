@@ -1,6 +1,6 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 import "../styles/navbar.css";
 
@@ -10,6 +10,7 @@ export const Navbar = () => {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
   const handlelogin = (e) => {
     e.preventDefault();
     if (!username || username.length < 3) {
@@ -40,7 +41,7 @@ export const Navbar = () => {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item ">
-                <Link className="nav-link" aria-current="page" to="/products">
+                <Link to="/products" className="nav-link">
                   Productos
                 </Link>
               </li>

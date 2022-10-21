@@ -1,9 +1,10 @@
 #modal-order-button{
     position: fixed;
-    top: 100px;
+    top: 85px;
     right: 40px;
+    
 }
 
 #modal-order-button img{
-    width: 30px;
+    max-width: 30px;
 }

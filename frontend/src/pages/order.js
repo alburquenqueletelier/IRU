@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
+import { Link } from "react-router-dom";
 import "../styles/orderview.css";
 
 import { Spinners } from "../components/spinners";
@@ -35,9 +36,9 @@ export const Order = () => {
             <h1>Tu pedido</h1>
             <div className="d-flex justify-content-evenly">
 
-                <div className="row row-cols-1 me-1">
+                <div className="row row-cols-1 me-1 justify-content-center">
                     {(store.order.combos.length > 0 || store.order.rolls.length > 0)
-                        ? <div className="col">
+                        ? <div className="col-10 col-md-auto">
                             {store.order.rolls?.map((item, index) => {
                                 let aux = store.rolls?.filter(product => product.id == item.id)[0];
                                 return (
@@ -68,20 +69,25 @@ export const Order = () => {
                             })}
                         </div>
                         : (store.order.rolls.length == 0 && store.order.combos.length == 0)
-                            ? <h2>No hay productos. Agregalos...</h2>
+                            ? <h2>No hay productos. <Link to="/products">Agregalos...</Link></h2>
                             : <Spinners />
                     }
                 </div>
-                <Detail displayMode="d-none"/>
+                {(store.order.rolls.length > 0 || store.order.combos.length > 0) &&
+                    <Detail displayMode="d-none" />
+                }
             </div>
 
             {/* <!-- Button trigger modal --> */}
-            <button id="modal-order-button" type="button" className="btn btn-info rounded-circle d-md-none" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                <img src="https://cdn-icons-png.flaticon.com/512/6957/6957439.png" alt="Pedido" />
-            </button>
+            {(store.order.rolls.length > 0 || store.order.combos.length > 0) &&
+                <button id="modal-order-button" type="button" className="btn btn-info rounded-circle d-md-none" data-bs-toggle="modal" data-bs-target="#orderDetailModal">
+                    <img src="https://cdn-icons-png.flaticon.com/512/6957/6957439.png" alt="Pedido" />
+                </button>
+
+            }
 
             {/* <!-- Modal --> */}
-            <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div className="modal fade" id="orderDetailModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="modal-header">
@@ -89,7 +95,6 @@ export const Order = () => {
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
-                            <p>algo</p>
                             <Detail />
                         </div>
                         <div className="modal-footer">

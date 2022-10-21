@@ -16,16 +16,14 @@ export const OrderCard = (props) => {
     };
 
     return (
-        <div className="card mb-3" style={{ maxWidth: "540px" }}>
+        <div className="card mb-3">
             <div className="row g-0">
-                <div className="col-md-4">
-                    <div className="img-container">
+                <div className="col-md-6">
                     <img src={props.image} className="img-card" alt="..." />
 
-                    </div>
                 </div>
-                <div className="col-md-8 d-flex flex-column justify-content-between">
-                    <div className="card-body justify-content-around d-flex flex-column">
+                <div className="col-md-6 d-flex flex-column justify-content-between">
+                    <div className="card-body justify-content-around align-items-center align-items-md-stretch d-flex flex-column">
                         <h5 className="card-title">{props.title}</h5>
                         <div className="d-flex flex-column flex-lg-row justify-content-lg-around align-items-baseline">
                             <p className="card-text"><strong className="text-danger">Valor: </strong> {actions.valueToPrice(1, props.price)}</p>
