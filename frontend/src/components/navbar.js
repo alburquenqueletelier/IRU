@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import { Link, NavLink } from "react-router-dom";
 
+import "bootstrap/dist/js/bootstrap.min.js";
 import "../styles/navbar.css";
 
 export const Navbar = () => {
@@ -25,6 +26,14 @@ export const Navbar = () => {
     return actions.login(username, password);
   };
 
+  const handleToggle = (e)=>{
+    const bsCollapse = new bootstrap.Collapse('#navbarSupportedContent', { // eslint-disable-line
+      toggle: false
+    });
+    bsCollapse.toggle();
+    
+  };
+
   return (
     <>
 
@@ -35,7 +44,8 @@ export const Navbar = () => {
               <img src="http://127.0.0.1:8000/media/rolls/logo/logo_timbre.png" alt="logo-home" />
             </div>
           </a>
-          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          {/* <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" onClick={(e)=>handleToggle(e)}> */}
+          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation" onClick={(e)=>handleToggle(e)}>
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
@@ -48,9 +58,9 @@ export const Navbar = () => {
               <li className="nav-item">
                 <Link to="/order" className="nav-link" href="#">
                   Pedido
-                {(store.order.rolls?.length > 0 || store.order.combos?.length > 0 )&&
-                  <span className="badge text-bg-secondary">{store.order.rolls.length + store.order.combos.length}</span>
-                }
+                  {(store.order.rolls?.length > 0 || store.order.combos?.length > 0) &&
+                    <span className="badge text-bg-secondary">{store.order.rolls.length + store.order.combos.length}</span>
+                  }
                 </Link>
               </li>
               <li className="nav-item">
