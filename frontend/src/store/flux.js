@@ -9,6 +9,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 			order: {
 				rolls: [],
 				combos: []
+			},
+			detail: {
+				id: undefined,
+				product: undefined
 			}
 		},
 		actions: {
@@ -196,6 +200,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			editOrder: (product, id, amount) => {
 				const { rolls, combos, order } = getStore();
+				console.log('product',product, 'id', id, 'amount', amount);
 				if (product == 'rolls'){
 					order.rolls.map(prod=>{
 						if (prod.id == id) prod.amount = amount;
@@ -250,6 +255,21 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 				});
 				return "Se vacio el carro";
+			},
+			displayDetail: async (id, product) =>{
+				await setStore({detail: {
+					id: id,
+					product: product
+				}});
+				const {showDetailModal} = getActions();
+				showDetailModal();
+			},
+			showDetailModal: () => {
+				const myModal = new bootstrap.Modal("#modalDetail", { // eslint-disable-line
+					keyboard: false, // eslint-disable-line
+				}); // eslint-disable-line
+				// console.log(myModal);
+				myModal.show();
 			},
 			// PUT action (Consume API)
 

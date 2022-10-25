@@ -1,18 +1,25 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
-
+window.bootstrap = require("bootstrap");
 import { ProductCard } from "../components/product_card";
 import { Spinners } from "../components/spinners";
+import { ProductDetail } from "../components/product_detail";
 
 export const ProductsView = () => {
 
   const { store, actions } = useContext(Context);
+  var data = {};
+  if (store.detail.product == "rolls"){
+      data = store.rolls.filter(roll=>roll.id == store.detail.id);
+  } else {
+        data = store.combos.filter(combo=>combo.id == store.detail.id);
+  }
 
   return (
     <div className="container-fluid">
       {/* <h1 className="text-center">I Roll You</h1> */}
+      <ProductDetail />
       <div className="container-sm">
-
         <h1 className="text-center">Rolls</h1>
         <div className="row row-cols-md-4 row-cols-1 justify-content-md-start justify-content-center">
           {store.rolls ?

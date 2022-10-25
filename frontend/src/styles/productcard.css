@@ -14,7 +14,7 @@
     font-size: larger;
 }
 
-.description {
+/* .description {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -33,7 +33,7 @@
 
 .description:hover::after{
     content: '';
-}
+} */
 
 .counter{
     display: inline-block;
