@@ -59,7 +59,7 @@ export const Order = () => {
                                     <OrderCard
                                         key={index}
                                         id={item.id}
-                                        type="rolls"
+                                        product="combos"
                                         title={aux?.name}
                                         price={aux?.price}
                                         amount={item.amount}

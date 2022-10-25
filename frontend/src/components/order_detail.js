@@ -36,6 +36,7 @@ export const Detail = (props) => {
                     </li>;
                 })}
                 {store.order.combos && store.order.combos.map((item, index) => {
+                    {total = total + item.amount* store.combos.filter(combo=>combo.id == item.id)[0]?.price;}
                     return <li className="list-group-item d-flex justify-content-between" key={index}>
                         {store.combos.filter(combo => combo.id == item.id)[0]?.name} x {item.amount} <span className="ms-1"> {actions.valueToPrice(item.amount, store.combos.filter(combo => combo.id == item.id)[0]?.price)}</span>
                     </li>;
