@@ -8,7 +8,7 @@ import { OrderCard } from "../components/order_card";
 import { Detail } from "../components/order_detail";
 
 
-export const Order = () => {
+export const OrderView = () => {
 
     const { store, actions } = useContext(Context);
     // const [delivery, setDelivery] = useState(null);

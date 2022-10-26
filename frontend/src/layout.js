@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 // Import pages & components
 import { Home } from "./pages/home";
 import { ProductsView } from "./pages/productsView";
-import { Order } from "./pages/order";
+import { OrderView } from "./pages/orderView";
 import { Navbar } from "./components/navbar";
 import { Footer } from "./components/footer";
 import ScrollToTop from "./components/scroll_to_top";
@@ -25,7 +25,7 @@ const Layout = () => {
           <Navbar />
 
           <Routes>
-            <Route element={<Order />} path="/order" />
+            <Route element={<OrderView />} path="/order" />
             <Route element={<ProductsView />} path="/products" />
             <Route element={<Home />} path="/" />
             <Route element={<div className="text-center"><h1>404: Not found!</h1></div>} path="*"/>
