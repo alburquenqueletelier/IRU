@@ -38,7 +38,7 @@ export const OrderView = () => {
 
                 <div className="row row-cols-1 me-1 justify-content-center">
                     {(store.order.combos.length > 0 || store.order.rolls.length > 0)
-                        ? <div className="col-10 col-md-auto">
+                        ? <div className="col-10 col-md-12">
                             {store.order.rolls?.map((item, index) => {
                                 let aux = store.rolls?.filter(product => product.id == item.id)[0];
                                 return (
