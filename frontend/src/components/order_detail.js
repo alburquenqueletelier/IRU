@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 import PropTypes from "prop-types";
 // import { Link } from "react-router-dom";
@@ -34,13 +34,23 @@ export const Detail = (props) => {
             setDisplayRetiro("d-none");
         }
         if (src.target.value == 'Retiro') {
+            document.querySelector('[name="ciudades"]').value = null;
+            setDelivery(null);
             setDisplayDelivery("d-none");
             setDisplayRetiro("d-block");
         }
     };
 
+    useEffect(()=>{
+        const initialChoose = document.querySelector(`#${props.deliveryTag}`);
+        if (initialChoose) {
+            initialChoose.click();
+            initialChoose.checked = true;
+        }
+    },[]);
+
     return (
-        <div className={"bg-white d-md-flex flex-column text-center align-items-stretch rounded p-2 " + props.displayMode} style={{ height: "fit-content", position: "sticky", top: "90px" }}>
+        <div className={"bg-white flex-column text-center align-items-stretch rounded p-2 " + props.displayMode} style={{ height: "fit-content", position: "sticky", top: "90px" }}>
             <h2>Detalles Pedido</h2>
             <ul className="list-group list-group-flush">
                 {store.order.rolls && store.order.rolls.map((item, index) => {
@@ -61,8 +71,8 @@ export const Detail = (props) => {
             </ul>
             <div className="distribution">
                 <div className="mt-1">
-                    <label className="btn btn-outline-dark" htmlFor="Delivery"><input type="radio" id="Delivery" name="choose" value="Delivery" onChange={(e) => handleChoose(e)}></input> Delivery</label>
-                    <label className="btn btn-outline-dark" htmlFor="Retiro"><input type="radio" id="Retiro" name="choose" value="Retiro" onChange={(e) => handleChoose(e)}></input>Retiro</label>
+                    <label className="btn btn-outline-dark" htmlFor={props.deliveryTag}><input type="radio" id={props.deliveryTag} name="choose" value="Delivery" onChange={(e) => handleChoose(e)}></input> Delivery</label>
+                    <label className="btn btn-outline-dark" htmlFor={props.retiroTag}><input type="radio" id={props.retiroTag} name="choose" value="Retiro" onChange={(e) => handleChoose(e)}></input>Retiro</label>
                 </div>
                 <div>
                     <div className={displayDelivery}>
@@ -98,5 +108,7 @@ export const Detail = (props) => {
 };
 
 Detail.propsTypes = {
-    displayMode: PropTypes.string
+    displayMode: PropTypes.string,
+    deliveryTag: PropTypes.string,
+    retiroTag: PropTypes.string
 };

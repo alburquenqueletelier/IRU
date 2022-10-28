@@ -36,14 +36,14 @@ export const OrderView = () => {
             <h1>Tu pedido</h1>
             <div className="d-flex justify-content-evenly">
 
-                <div className="row row-cols-1 me-1 justify-content-center">
+                
                     {(store.order.combos.length > 0 || store.order.rolls.length > 0)
-                        ? <div className="col-10 col-md-12">
+                        ? <div className="row row-cols-1 me-1 justify-content-center">
                             {store.order.rolls?.map((item, index) => {
                                 let aux = store.rolls?.filter(product => product.id == item.id)[0];
-                                return (
+                                return (<div key={index} className="col-10 col-md-10">
                                     <OrderCard
-                                        key={index}
+                                        
                                         id={item.id}
                                         product="rolls"
                                         title={aux?.name}
@@ -51,13 +51,14 @@ export const OrderView = () => {
                                         amount={item.amount}
                                         image={aux?.image}
                                     />
+                                    </div>
                                 );
                             })}
                             {store.order.combos?.map((item, index) => {
                                 let aux = store.combos?.filter(product => product.id == item.id)[0];
-                                return (
+                                return (<div key={index} className="col-10 col-md-10">
                                     <OrderCard
-                                        key={index}
+                                      
                                         id={item.id}
                                         product="combos"
                                         title={aux?.name}
@@ -65,16 +66,18 @@ export const OrderView = () => {
                                         amount={item.amount}
                                         image={aux?.image}
                                     />
+                                    </div>
                                 );
                             })}
+                            
                         </div>
                         : (store.order.rolls.length == 0 && store.order.combos.length == 0)
                             ? <h2>No hay productos. <Link to="/products">Agregalos...</Link></h2>
                             : <Spinners />
                     }
-                </div>
+   
                 {(store.order.rolls.length > 0 || store.order.combos.length > 0) &&
-                    <Detail displayMode="d-none" />
+                    <Detail displayMode=" d-md-flex d-none" deliveryTag="deliveryTag" retiroTag="retiroTag"/>
                 }
             </div>
 
@@ -95,7 +98,7 @@ export const OrderView = () => {
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
-                            <Detail />
+                            <Detail displayMode="d-flex" deliveryTag="deliveryModalTag" retiroTag="retiroModalTag"/>
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
