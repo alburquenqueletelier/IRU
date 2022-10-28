@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 export const Detail = (props) => {
 
     const { store, actions } = useContext(Context);
+    const [chooseCity, setChooseCity] = useState("");
     const [delivery, setDelivery] = useState(null);
     const [displayDelivery, setDisplayDelivery] = useState("d-none");
     const [displayRetiro, setDisplayRetiro] = useState("d-none");
@@ -19,7 +20,11 @@ export const Detail = (props) => {
 
     const handleDelivery = (e) => {
         let value = e.target.value;
-        console.log(value);
+        setChooseCity(value);
+        // console.log(value);
+        // if (value) setDelivery(parseInt(value));
+        // else setDelivery(null);
+        // console.log(value);
         if (locationDelivery.map(loc => loc.name).includes(value)) {
             setDelivery(locationDelivery.filter(loc => loc.name == value)[0].price);
         } else {
@@ -34,20 +39,21 @@ export const Detail = (props) => {
             setDisplayRetiro("d-none");
         }
         if (src.target.value == 'Retiro') {
-            document.querySelector('[name="ciudades"]').value = null;
+            // document.querySelector('[name="ciudades"]').value = null;
+            setChooseCity("");
             setDelivery(null);
             setDisplayDelivery("d-none");
             setDisplayRetiro("d-block");
         }
     };
 
-    useEffect(()=>{
+    useEffect(() => {
         const initialChoose = document.querySelector(`#${props.deliveryTag}`);
         if (initialChoose) {
             initialChoose.click();
             initialChoose.checked = true;
         }
-    },[]);
+    }, []);
 
     return (
         <div className={"bg-white flex-column text-center align-items-stretch rounded p-2 " + props.displayMode} style={{ height: "fit-content", position: "sticky", top: "90px" }}>
@@ -69,25 +75,33 @@ export const Detail = (props) => {
                     Subtotal <span className="ms-1">{actions.valueToPrice(1, total)}</span>
                 </li>
             </ul>
-            <div className="distribution">
+            <div className="distribution py-2">
                 <div className="mt-1">
                     <label className="btn btn-outline-dark" htmlFor={props.deliveryTag}><input type="radio" id={props.deliveryTag} name="choose" value="Delivery" onChange={(e) => handleChoose(e)}></input> Delivery</label>
                     <label className="btn btn-outline-dark" htmlFor={props.retiroTag}><input type="radio" id={props.retiroTag} name="choose" value="Retiro" onChange={(e) => handleChoose(e)}></input>Retiro</label>
                 </div>
                 <div>
                     <div className={displayDelivery}>
-                        Delivery = {
+                        <p className="mt-2">
+                            Delivery = {
                             total >= 15000
                                 ? "Gratis!"
                                 : !!delivery && actions.valueToPrice(1, delivery)
                         }
+                        </p>
                         <div>
-                            <input list="ciudades" name="ciudades" placeholder="Selecciona tu localidad" onChange={handleDelivery} />
+                            <select value={chooseCity} name="ciudades" onChange={handleDelivery}>
+                            <option value="" disabled hidden>Ciudad</option>
+                                {locationDelivery.map((item,index)=>{
+                                    return <option key={index} value={item.name}>{item.name}</option>;
+                                })}
+                            </select>
+                            {/* <input list="ciudades" name="ciudades" placeholder="Selecciona tu localidad" onChange={handleDelivery} />
                             <datalist id="ciudades">
                                 {locationDelivery.map((item, index) => {
                                     return <option key={index} value={item.name}>{item.price}</option>;
                                 })}
-                            </datalist>
+                            </datalist> */}
                             <input type="text" placeholder="Dirección" />
                         </div>
                     </div>
