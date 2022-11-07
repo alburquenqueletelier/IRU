@@ -1,7 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 import PropTypes from "prop-types";
-// import { Link } from "react-router-dom";
 
 export const Detail = (props) => {
 
@@ -90,18 +89,13 @@ export const Detail = (props) => {
                         }
                         </p>
                         <div>
+                       
                             <select value={chooseCity} name="ciudades" onChange={handleDelivery}>
                             <option value="" disabled hidden>Ciudad</option>
                                 {locationDelivery.map((item,index)=>{
                                     return <option key={index} value={item.name}>{item.name}</option>;
                                 })}
                             </select>
-                            {/* <input list="ciudades" name="ciudades" placeholder="Selecciona tu localidad" onChange={handleDelivery} />
-                            <datalist id="ciudades">
-                                {locationDelivery.map((item, index) => {
-                                    return <option key={index} value={item.name}>{item.price}</option>;
-                                })}
-                            </datalist> */}
                             <input type="text" placeholder="Dirección" />
                         </div>
                     </div>

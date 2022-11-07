@@ -6,6 +6,8 @@ import "../styles/home.css";
 import { Registerform } from "../components/register_form";
 import { Carousel } from "../components/carousel";
 import { Spinners } from "../components/spinners";
+import  HomeMap  from "../components/map_iru_loc";
+
 
 export const Home = () => {
 
@@ -51,8 +53,12 @@ export const Home = () => {
 
       <div className="row justify-content-center my-3">
         <h1 className="text-center">Reparto</h1>
-        <div className="text-center">
-          <p>Las entregas son en la estación de metro El Sol y Quilpué</p>
+        <div className="text-center ">
+          <p>Puedes retirar en nuestro local, Estación El Sol o Estación Quilpué</p>
+          <div className="d-flex justify-content-center my-2">
+          <HomeMap />
+
+          </div>
           <p>Delivery con costo adicional, gratis por compras sobre $15.000</p>
           <div className="table-responsive">
 
