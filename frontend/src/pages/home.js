@@ -40,13 +40,14 @@ export const Home = () => {
         <div className="col-auto">
 
           <h1 className="text-center">¿Como Pedir?</h1>
-          <p className="text-center">A través de Whatsapp o Instagram</p>
+          {/* <p className="text-center">A través de Whatsapp o Instagram</p> */}
           <ol >
             <li>Dirigete a la sección <Link to="/products">productos</Link></li>
             <li>Busca lo que desees, selecciona la cantidad y presiona añadir</li>
             <li>Dirigete a la sección pedido y verifica tus productos</li>
             <li>Selecciona metodo de entrega y de pago</li>
-            <li>Realiza tu pedido y listo !</li>
+            <li>Dale a comprar para generar nota de compra</li>
+            <li>Te llegara un Whatsapp para confirmar pedido y listo!</li>
           </ol>
         </div>
       </div>
@@ -119,23 +120,7 @@ export const Home = () => {
       </div>
 
       <hr id="register"></hr>
-    <h1 className="text-center">Registrate y Disfruta</h1>
-    <div className="d-flex justify-content-center">
-      <ul className="list-group-numbered">
-        <li className="list-group-item">Haz tus pedidos de forma rápida</li>
-        <li className="list-group-item">Puedes repetir el último pedido</li>
-        <li className="list-group-item">Disfrutar de beneficios</li>
-      </ul>
-    </div>
-    <Registerform />
-
-      <div className="logo-container">
-        <img src="http://127.0.0.1:8000/media/rolls/logo/logo_color.png" className="img-fluid logo-home" alt="Logo IRU"></img>
-      </div>
-
-
-      {/* <hr id="register"></hr>
-    <h1 className="text-center">Registrate y Disfruta</h1>
+    {/* <h1 className="text-center">Registrate y Disfruta</h1>
     <div className="d-flex justify-content-center">
       <ul className="list-group-numbered">
         <li className="list-group-item">Haz tus pedidos de forma rápida</li>
@@ -144,6 +129,10 @@ export const Home = () => {
       </ul>
     </div>
     <Registerform /> */}
+
+      <div className="logo-container">
+        <img src="http://127.0.0.1:8000/media/rolls/logo/logo_color.png" className="img-fluid logo-home" alt="Logo IRU"></img>
+      </div>
     </div>
   );
 };
