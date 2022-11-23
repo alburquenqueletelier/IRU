@@ -44,7 +44,7 @@ export const ProductDetail = () => {
                                 <p>Salsa:</p>
                             </div>
                             <div className="col-sm-10">
-                                <p> {data?.topping.length > 0 ?
+                                <p> {data?.topping?.length > 0 ?
                                 data?.topping.map((item, index)=>{
                                     return <span key={index}>{item} {(data?.topping.length>1 && index<data?.topping.length) && ','}</span>;
                                 })
