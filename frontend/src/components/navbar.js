@@ -67,12 +67,12 @@ export const Navbar = () => {
                 <a className="nav-link" href="#">Contacto</a>
               </li>
             </ul>
-            <form className="d-md-flex d-inline-block text-center" onSubmit={handlelogin}>
+            {/* <form className="d-md-flex d-inline-block text-center" onSubmit={handlelogin}>
               <input className="form-control me-2" type="text" placeholder="Usuario" aria-label="Text" value={username} onChange={(e) => setUsername(e.target.value)} />
               <input className="form-control me-2" type="password" placeholder="Constraseña" aria-label="Contraseña" onChange={(e) => setPassword(e.target.value)} />
               <button className="btn btn-outline-primary" type="submit">Login</button>
             </form>
-            <a className="btn btn-outline-primary ms-1" href="#register">Registrate</a>
+            <a className="btn btn-outline-primary ms-1" href="#register">Registrate</a> */}
           </div>
         </div>
       </nav>
