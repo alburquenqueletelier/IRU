@@ -1,11 +1,11 @@
-.carousel .carousel-item {
+/* .carousel .carousel-item {
     max-height: 400px;
-    max-width: 50vw;
-}
+    width: auto;
+} */
   
 .carousel-item img {
-    max-height: 400px;
-    max-width: 50vw;
+    max-height: 530px;
+    width: 100%;
     object-fit: cover;
 }
 
