@@ -5,13 +5,13 @@ import PropTypes from "prop-types";
 import "../styles/productdetail.css";
 
 export const ProductDetail = () => {
-    
-    const {store, actions} = useContext(Context);
+
+    const { store, actions } = useContext(Context);
     const [data, setData] = useState();
 
-    useEffect(()=>{
-        if (store.detail.product == 'rolls') setData(store.rolls.filter(roll=>roll.id == store.detail.id)[0]);
-        else setData(store.combos.filter(combo=>combo.id == store.detail.id)[0]);
+    useEffect(() => {
+        if (store.detail.product == 'rolls') setData(store.rolls.filter(roll => roll.id == store.detail.id)[0]);
+        else setData(store.combos.filter(combo => combo.id == store.detail.id)[0]);
     }, [store.detail]);
 
     return (
@@ -20,16 +20,10 @@ export const ProductDetail = () => {
                 <div className="modal-content">
                     <div className="modal-header">
                         <img src=
-                        {data?.image} 
-                        alt="product" 
+                            {data?.image}
+                            alt="product"
                         />
-                        {/* <h1 className="modal-title fs-5" id="modalDetailLabel">
-                            {store.detail.product == 'rolls'
-                            ? store.rolls.filter(roll=>roll.id == store.detail.id)[0]?.name
-                            : store.combos.filter(combo=>combo.id == store.detail.id)[0]?.name
-                            }
-                        </h1> */}
-                        {/* <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> */}
+
                     </div>
                     <div className="modal-body">
                         <h5 className="modal-title fs-5">{data?.name}</h5>
@@ -45,11 +39,11 @@ export const ProductDetail = () => {
                             </div>
                             <div className="col-sm-10">
                                 <p> {data?.topping?.length > 0 ?
-                                data?.topping.map((item, index)=>{
-                                    return <span key={index}>{item} {(data?.topping.length>1 && index<data?.topping.length) && ','}</span>;
-                                })
-                                : '-'
-                            }
+                                    data?.topping.map((item, index) => {
+                                        return <span key={index}>{item} {(data?.topping.length > 1 && index < data?.topping.length) && ','}</span>;
+                                    })
+                                    : '-'
+                                }
                                 </p>
                             </div>
                             <div className="col-sm-2">
@@ -64,12 +58,10 @@ export const ProductDetail = () => {
                             <div className="col-sm-10">
                                 <p> {data?.description}</p>
                             </div>
-                           
                         </div>
-                    </div>
-                    <div className="modal-footer">
-                        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" className="btn btn-primary">Save changes</button>
+                        <div className="modal-footer">
+                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
                     </div>
                 </div>
             </div>
