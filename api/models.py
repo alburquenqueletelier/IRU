@@ -133,7 +133,7 @@ class Roll(models.Model):
     topping = models.ManyToManyField(Topping, blank=True)
     aggregate = models.ForeignKey(Aggregate, on_delete=models.CASCADE, null=True, blank=True)
     image = models.ImageField(upload_to='rolls', blank=True)
-    name = models.CharField(max_length=200, default="ROLL", blank=True)
+    name = models.CharField(max_length=200, default="ROLL")
     description = models.CharField(max_length=1000, default="IRU", blank=True)
     price = models.IntegerField(default=99999, validators=[min_price])
     sold = models.IntegerField(default=0)
@@ -205,7 +205,8 @@ class Carousel(models.Model):
     updated_at = models.DateTimeField(auto_now=True, null=True)
 
     def __str__(self):
-        return f"ID: {self.id} Foto: {self.rolls_images.name or self.combo_images.name}"
+        # return f"ID: {self.id} "
+        return f"ID: {self.id} Producto: {self.rolls_images.name if self.rolls_images else self.combo_images.name}"
 
 class Testimage(models.Model):
     imagen = models.ImageField(upload_to='rolls', blank=True)
