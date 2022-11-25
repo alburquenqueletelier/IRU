@@ -73,7 +73,6 @@ export const Detail = (props) => {
         // validation
         if (!chooseCity) { // tambien alberga estaciones de metro
             //alerta ciudad
-            console.log('laerta ciudad');
             setAlert(
                 <div className="alert alert-danger alert-dismissible fade show" role="alert">
                     <div>Elige {displayDelivery == 'd-block' ? "Ciudad" : "Estación"}</div>
@@ -87,7 +86,6 @@ export const Detail = (props) => {
             return;
         }
         if (address && address.length < 5) {
-            console.log('address no valido');
             setAlert(
                 <div className="alert alert-danger alert-dismissible fade show" role="alert">
                     <div>Ingresa dirección valida</div>
@@ -101,7 +99,6 @@ export const Detail = (props) => {
             return;
         }
         if (displayDelivery == 'd-block' && !address) {// alguna alerta
-            console.log('alerta de address');
             setAlert(
                 <div className="alert alert-danger alert-dismissible fade show" role="alert">
                     <div>Debes ingresar dirección de entrega</div>
@@ -116,7 +113,6 @@ export const Detail = (props) => {
         }
         if (inputPhone.length < 8 || inputPhone.length > 9 || isNaN(parseInt(inputPhone, 10))) {
             // alguna alerta
-            console.log('alerta de inputPhone');
             setAlert(
                 <div className="alert alert-danger alert-dismissible fade show" role="alert">
                     <div>Ingresa número de contacto EJ: 979577547</div>
@@ -141,17 +137,30 @@ export const Detail = (props) => {
             // setTimeout( ()=>{
             //     const divAlert = document.querySelector('.alert.alert-danger.alert-dismissible.fade.show > button').click();
             // },3000);
-            console.log('cash', document.querySelector('#cash').checked, 'transfer', document.querySelector('#transfer').checked);
-            console.log('sin metodo pago');
             return;
         }
+        const dateNow = new Date().toJSON().split(".")[0];
 
-
+        var pedido = "";
+        store.order.rolls.forEach(item=>{
+            pedido+=store.rolls.filter(roll => roll.id == item.id)[0].name;
+            pedido+="%20cantidad="+item.amount+",%20";
+        });
+        store.order.combos.forEach(item=>{
+            pedido+=store.combos.filter(combo=> combo.id == item.id)[0].name;
+            pedido+="%20cantidad="+item.amount+",%20";
+        });
+        pedido=pedido.replace(" ","%20");
+        // https://wa.me/56979577547?text=Pedido:${pedido},%20Total=${actions.valueToPrice(1, total + delivery)},%20${address ? `Ciudad=${chooseCity},%20Dirección=${address}` : `Retiro=${chooseCity}`},%20Contacto=${inputPhone}
+        window.location.href = `
+        https://wa.me/56939011832?text=Pedido:${pedido}%20Total=${actions.valueToPrice(1, total + delivery)},%20${address ? `Ciudad=${chooseCity},%20Dirección=${address}` : `Retiro=${chooseCity}`},%20Contacto=${inputPhone},%20Pago=${payment}
+        `;
+        
         // console.log(inputPhone);
         // console.log(typeof delivery);
         // console.log(total + delivery);
         // exportAsImage(document.querySelector('.bg-white.flex-column.text-center.align-items-stretch.rounded.p-2'));
-        exportAsImage(document.querySelector('#detail'+props.deliveryTag));
+        // exportAsImage(document.querySelector('#detail'+props.deliveryTag), dateNow+"C"+inputPhone);
         
     };
 
