@@ -1,3 +1,7 @@
+nav {
+    background: linear-gradient(to right, #EA6A4E,#e49280); 
+}
+
 nav img {
     position: relative;
     width: 100px;
