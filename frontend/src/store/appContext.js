@@ -38,6 +38,8 @@ const injectContext = PassedComponent => {
 				state.actions.getAllCarousels();
 			}
 			if (sessionStorage.getItem("order")) state.actions.loadAllOrder();
+			state.actions.getAllToppings();
+			state.actions.getAllAggregates();
 		}, []);
 
 		
