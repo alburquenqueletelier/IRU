@@ -9,15 +9,26 @@ export const ProductsView = () => {
 
   const { store, actions } = useContext(Context);
   var data = {};
-  if (store.detail.product == "rolls"){
-      data = store.rolls.filter(roll=>roll.id == store.detail.id);
+  if (store.detail.product == "rolls") {
+    data = store.rolls.filter(roll => roll.id == store.detail.id);
   } else {
-        data = store.combos.filter(combo=>combo.id == store.detail.id);
+    data = store.combos.filter(combo => combo.id == store.detail.id);
   }
+
 
   return (
     <div className="container-fluid">
-      {/* <h1 className="text-center">I Roll You</h1> */}
+      {/* Toast */}
+      <div className="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="liveToast" className="toast" role="alert" aria-live="assertive" aria-atomic="true">
+          <div className="toast-header bg-light">
+            <strong>{store?.toast}</strong>
+            <img src={store.toast == "Añadido con éxito" ? "https://cdn-icons-png.flaticon.com/512/190/190411.png" : "https://cdn-icons-png.flaticon.com/512/190/190406.png"} className="rounded me-auto" alt="..." style={{width:"2rem"}}/>
+            <button type="button" className="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+          </div>
+        </div>
+      </div>
+      {/* Toast */}
       <ProductDetail />
       <div className="container-sm">
         <h1 className="text-center">Rolls</h1>

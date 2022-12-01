@@ -1,7 +1,6 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			// order: []
 			offers: [],
 			combos: [],
 			rolls: [],
@@ -13,7 +12,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			detail: {
 				id: undefined,
 				product: undefined
-			}
+			},
+			toast: ""
 		},
 		actions: {
 			/////////////////////////////////////
@@ -178,7 +178,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return false;
 				} 
 				const { rolls, combos, order } = getStore();
-				console.log('pase por addorder');
 				let add = {
 					id: id,
 					amount: amount
@@ -195,7 +194,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 					order.combos.push(add);
 				}
 				sessionStorage.setItem("order",JSON.stringify(order));
-				setStore({order:order});
+				setStore({order:order, toast: "Añadido con éxito"});
+				// Toastshow
+				const toastLiveExample = document.getElementById('liveToast');
+				const toast = new bootstrap.Toast(toastLiveExample, {delay: 2000}); // eslint-disable-line
+				toast.show();
+				// Toastshow
 				return "Agregado con éxito al carro";
 			},
 			editOrder: (product, id, amount) => {
@@ -242,8 +246,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const {order} = getStore();
 				if (product == 'rolls') order.rolls = order.rolls.filter(prodID => prodID.id !== id);
 				else order.combos = order.combos.filter(prodID => prodID.id !== id);
-				setStore({order:order});
+				setStore({order:order, toast:"Producto eliminado"});
 				sessionStorage.setItem("order", JSON.stringify(order));
+				const toastLiveExample = document.getElementById('liveToast');
+				const toast = new bootstrap.Toast(toastLiveExample, {delay: 2000}); // eslint-disable-line
+				toast.show();
 				return `${product.slice(0,-1)} eliminado del carro`;
 			},
 			deleteAllOrder: () => {
