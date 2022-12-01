@@ -41,15 +41,28 @@ const markers = [
     }
 ];
 
+
+const quilpue = [[-72, -32], [-70, -32], [-70, -34], [-72, -33], [-72, -32]];
+
 const polygonData = {
     paths: [
-        { lat: -33.024367107968054, lng: -71.42779695016425 },
-        { lat: -33.03990991453434, lng: -71.46933900067305 },
-        { lat: -33.007622578225806, lng: -71.55051263719261 },
-        { lat: -33.024286042235566, lng: -71.56740258509726 },
-        { lat: -33.024367107968054, lng: -71.42779695016425 },
-        // {lat: , lng:  },
-        // {lat: , lng:  },
+        {
+            lat: -33.031800437223936,
+            lng: -71.42958891773964
+        },
+        {
+            lat: -33.039337685520586,
+            lng: -71.42877616577614
+        },
+        {
+            lat: -33.045273489231235,
+            lng: -71.44465484286953
+        },
+        {
+            lat: -33.031800437223936,
+            lng: -71.42958891773964
+        },
+
     ],
     options: {
         fillColor: "lightblue",
@@ -66,50 +79,70 @@ const polygonData = {
 };
 
 const HomeMap = () => {
-    const { isLoaded } = useJsApiLoader({
+    const { isLoaded, loadError } = useJsApiLoader({
         googleMapsApiKey: process.env.REACT_APP_MAP_KEY,
         // libraries: ['places'],
     });
 
-    // const [map, setMap] = useState(/** @type google.maps.Map */(null));
-    
+    // const onLoad = async map => {
+    //     let polypaths = [];
+    //     quilpue.forEach(coordinate => {
+    //         polypaths.push({ lat: coordinate[0], lng: coordinate[1] });
+    //     });
+    //     // console.log(polypaths);
+    //     // console.log(polygonData.paths);
+    //     const polygono = new window.google.maps.Polygon({
+    //         paths: polygonData.paths,
+    //         strokeColor: "#FF0000",
+    //         strokeOpacity: 0.8,
+    //         strokeWeight: 2,
+    //         fillColor: "#FF0000",
+    //         fillOpacity: 0.35,
+    //     });
+    //     polygono.setMap(map);
+    //     console.log("map: ", map);
+    // };
+
+    const renderMap = () => (
+        <GoogleMap
+            center={markers[0].position}
+            zoom={12}
+            mapContainerStyle={{ width: '350px', height: '350px' }}
+            options={{
+                zoomControl: false,
+                streetViewControl: false,
+                mapTypeControl: false,
+                fullscreenControl: false,
+            }}
+            // onLoad={onLoad}
+        >
+
+            <MarkerF position={markers[0].position}>
+                <InfoBoxF
+                    options={{
+                        closeBoxURL: ""
+                    }}
+                >
+                    <div className='text-danger'>
+                        IRU
+                    </div>
+                </InfoBoxF>
+            </MarkerF>
+            {/* <PolygonF
+                paths={polygonData.paths}
+                options={polygonData.options}
+            /> */}
+        </GoogleMap>
+    );
+
+    if (loadError) return <div>Map cannot be loaded right now, sorry.</div>;
 
     if (!isLoaded) {
         return <Spinners />;
+    } else {
+        return renderMap();
     }
 
-    return (
-        <>
-            <GoogleMap
-                center={markers[0].position}
-                zoom={10}
-                mapContainerStyle={{ width: '350px', height: '350px' }}
-                options={{
-                    zoomControl: false,
-                    streetViewControl: false,
-                    mapTypeControl: false,
-                    fullscreenControl: false,
-                }}
-            >
-                
-                <MarkerF position={markers[0].position}>
-                    <InfoBoxF 
-                        options={{
-                            closeBoxURL : ""
-                        }}
-                    >
-                        <div className='text-danger'>
-                            IRU
-                        </div>
-                    </InfoBoxF>
-                </MarkerF>
-                {/* <PolygonF
-                    paths={polygonData.paths}
-                    options={polygonData.options}
-                /> */}
-            </GoogleMap>
-        </>
-    );
 };
 //
 // const home = {
