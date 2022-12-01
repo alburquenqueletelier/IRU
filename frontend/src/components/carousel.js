@@ -7,9 +7,14 @@ export const Carousel = () => {
     const {store} = useContext(Context);
     // title={item.name} description={item.description} image={item.image} price={item.price}
 
+    // useEffect(()=>{
+    //     let carousel = bootstrap.Carousel.getInstance('#carouselExampleIndicators');
+    //     carousel.trigger();
+    //     // console.log('caoursel active', document.querySelector('.carousel-item'));
+    // },[]);
 
     return (
-        <div id="carouselExampleIndicators" className="carousel slide" data-bs-ride="true">
+        <div id="carouselExampleIndicators" className="carousel slide carousel-fade" data-bs-interval="3000" data-bs-ride="carousel">
             <div className="carousel-indicators">
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -26,23 +31,6 @@ export const Carousel = () => {
                         </div>; 
                     })
                 }
-                {/* <div className="carousel-item active">
-                    <img
-                    src={store?.carousels?.rolls_images
-                        ? store?.rolls?.filter(roll=>roll.name==store?.carousels[0]?.rolls_images)[0]?.image
-                        : store?.carousels?.combo_images
-                            ?  store?.combos?.filter(combo=>combo.name==store?.carousels[0]?.combo_images)[0]?.image
-                            : "https://dummyimage.com/700x800/000/fff"
-                    } 
-                    className="d-block w-100" 
-                    alt="https://dummyimage.com/700x800/000/fff" />
-                </div>
-                <div className="carousel-item">
-                    <img src={store?.carousels && store.rolls.filter(prod=>prod.id==store?.carousels[1]?.rolls_images)[0]?.image} className="d-block w-100" alt="https://dummyimage.com/600x400/000/fff" />
-                </div>
-                <div className="carousel-item">
-                    <img src={store?.carousels && store.rolls.filter(prod=>prod.id==store?.carousels[2]?.rolls_images)[0]?.image} className="d-block w-100" alt="https://dummyimage.com/600x400/000/fff" />
-                </div> */}
             </div>
             <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
                 <span className="carousel-control-prev-icon" aria-hidden="true"></span>
