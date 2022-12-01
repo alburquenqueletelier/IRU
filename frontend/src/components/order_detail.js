@@ -2,12 +2,13 @@ import React, { useState, useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 import PropTypes from "prop-types";
 import { exportAsImage } from "../utils/exportAsImage";
+// librerías para generar pdf, no se usa actualmente
 // import html2canvas from "html2canvas";
-
 // import { jsPDF } from "jspdf";
 
 export const Detail = (props) => {
 
+    // Variables
     const { store, actions } = useContext(Context);
     const [chooseCity, setChooseCity] = useState("");
     const [delivery, setDelivery] = useState(null);
@@ -19,23 +20,12 @@ export const Detail = (props) => {
     const [alert, setAlert] = useState(null);
     var total = 0;
 
+    // Ciudad de reparto y precio
     const locationDelivery = [
         { name: "Quilpué", price: 2000 },
         { name: "Villa Alemana", price: 2000 },
         { name: "Viña del Mar", price: 3000 }
     ];
-
-    // const alert = (message, type) => {
-    //     const wrapper = document.createElement('div')
-    //     wrapper.innerHTML = [
-    //         `<div class="alert alert-${type} alert-dismissible fade show" role="alert">`,
-    //         `   <div>${message}</div>`,
-    //         '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
-    //         '</div>'
-    //     ].join('')
-
-    //     document.querySelector('#alert').append(wrapper)
-    // }
 
     const handleDelivery = (e) => {
         let value = e.target.value;
@@ -80,9 +70,9 @@ export const Detail = (props) => {
                 </div>
             );
 
-            // setTimeout( ()=>{
-            //     const divAlert = document.querySelector('.alert.alert-danger.alert-dismissible.fade.show > button').click();
-            // },3000);
+            setTimeout( ()=>{
+                const divAlert = document.querySelector('.alert.alert-danger.alert-dismissible.fade.show > button').click();
+            },3000);
             return;
         }
         if (address && address.length < 5) {
@@ -93,9 +83,9 @@ export const Detail = (props) => {
                 </div>
             );
 
-            // setTimeout( ()=>{
-            //     const divAlert = document.querySelector('.alert.alert-danger.alert-dismissible.fade.show > button').click();
-            // },3000);
+            setTimeout( ()=>{
+                const divAlert = document.querySelector('.alert.alert-danger.alert-dismissible.fade.show > button').click();
+            },3000);
             return;
         }
         if (displayDelivery == 'd-block' && !address) {// alguna alerta
@@ -106,9 +96,9 @@ export const Detail = (props) => {
                 </div>
             );
 
-            // setTimeout( ()=>{
-            //     const divAlert = document.querySelector('.alert.alert-danger.alert-dismissible.fade.show > button').click();
-            // },3000);
+            setTimeout( ()=>{
+                const divAlert = document.querySelector('.alert.alert-danger.alert-dismissible.fade.show > button').click();
+            },3000);
             return;
         }
         if (inputPhone.length < 8 || inputPhone.length > 9 || isNaN(parseInt(inputPhone, 10))) {
@@ -120,9 +110,9 @@ export const Detail = (props) => {
                 </div>
             );
 
-            // setTimeout( ()=>{
-            //     const divAlert = document.querySelector('.alert.alert-danger.alert-dismissible.fade.show > button').click();
-            // },3000);
+            setTimeout( ()=>{
+                const divAlert = document.querySelector('.alert.alert-danger.alert-dismissible.fade.show > button').click();
+            },3000);
             return;
         }
         if (!payment) {
@@ -134,9 +124,9 @@ export const Detail = (props) => {
                 </div>
             );
 
-            // setTimeout( ()=>{
-            //     const divAlert = document.querySelector('.alert.alert-danger.alert-dismissible.fade.show > button').click();
-            // },3000);
+            setTimeout( ()=>{
+                const divAlert = document.querySelector('.alert.alert-danger.alert-dismissible.fade.show > button').click();
+            },3000);
             return;
         }
         const dateNow = new Date().toJSON().split(".")[0];
@@ -144,21 +134,17 @@ export const Detail = (props) => {
         var pedido = "";
         store.order.rolls.forEach(item=>{
             pedido+=store.rolls.filter(roll => roll.id == item.id)[0].name;
-            pedido+="%20cantidad="+item.amount+",%20";
+            pedido+="%20x%20"+item.amount+"%0a";
         });
         store.order.combos.forEach(item=>{
             pedido+=store.combos.filter(combo=> combo.id == item.id)[0].name;
-            pedido+="%20cantidad="+item.amount+",%20";
+            pedido+="%20x%20"+item.amount+"%0a";
         });
         pedido=pedido.replace(" ","%20");
-        // https://wa.me/56979577547?text=Pedido:${pedido},%20Total=${actions.valueToPrice(1, total + delivery)},%20${address ? `Ciudad=${chooseCity},%20Dirección=${address}` : `Retiro=${chooseCity}`},%20Contacto=${inputPhone}
-        window.location.href = `
-        https://wa.me/56939011832?text=Pedido:${pedido}%20Total=${actions.valueToPrice(1, total + delivery)},%20${address ? `Ciudad=${chooseCity},%20Dirección=${address}` : `Retiro=${chooseCity}`},%20Contacto=${inputPhone},%20Pago=${payment}
-        `;
+        window.open(`
+        https://wa.me/56939011832?text=Pedido:%0a${pedido}%0aTotal=${actions.valueToPrice(1, total + delivery)},%0a${address ? `Ciudad=${chooseCity}%0aDirección=${address}` : `Retiro=${chooseCity}`}%0aContacto=${inputPhone}%0aPago=${payment}
+        `, '_blank');
         
-        // console.log(inputPhone);
-        // console.log(typeof delivery);
-        // console.log(total + delivery);
         // exportAsImage(document.querySelector('.bg-white.flex-column.text-center.align-items-stretch.rounded.p-2'));
         // exportAsImage(document.querySelector('#detail'+props.deliveryTag), dateNow+"C"+inputPhone);
         
@@ -198,7 +184,7 @@ export const Detail = (props) => {
                 </li>
             </ul>
             <div className="distribution py-2">
-                <div className="mt-1">
+                <div className="mt-1 d-inline-flex">
                     <label className="btn btn-outline-dark" htmlFor={props.deliveryTag}><input type="radio" id={props.deliveryTag} name="choose" value="Delivery" onChange={(e) => handleChoose(e)}></input> Delivery</label>
                     <label className="btn btn-outline-dark" htmlFor={props.retiroTag}><input type="radio" id={props.retiroTag} name="choose" value="Retiro" onChange={(e) => handleChoose(e)}></input>Retiro</label>
                 </div>
@@ -235,13 +221,13 @@ export const Detail = (props) => {
             <p>TOTAL = {total >= 15000 ? actions.valueToPrice(1, total) : actions.valueToPrice(1, total + delivery)}</p>
             <div className="d-flex justify-content-around">
                 <div className="form-check">
-                    <input className="form-check-input" type="radio" name="paymentMethod" id="cash" value="cash" onChange={(e)=>setPayment(e.target.value)}/>
+                    <input className="form-check-input" type="radio" name="paymentMethod" id="cash" value="efectivo" onChange={(e)=>setPayment(e.target.value)}/>
                     <label className="form-check-label" htmlFor="cash">
                         Efectivo
                     </label>
                 </div>
                 <div className="form-check">
-                    <input className="form-check-input" type="radio" name="paymentMethod" id="transfer" value="transfer" onChange={(e)=>setPayment(e.target.value)}/>
+                    <input className="form-check-input" type="radio" name="paymentMethod" id="transfer" value="transferencia" onChange={(e)=>setPayment(e.target.value)}/>
                     <label className="form-check-label" htmlFor="transfer">
                         Transferencia
                     </label>
@@ -252,7 +238,7 @@ export const Detail = (props) => {
                 <input value={inputPhone} onChange={(e) => setInputPhone(e.target.value)} type="text" className="form-control" id="floatingtext" placeholder="Telefono" />
                 <label htmlFor="floatingtext">Teléfono <small style={{ fontSize: "0.7rem" }}>Ej: 979577547</small></label>
             </div>
-            <small>Al precionar comprar se emitirá una nota de compra <br />y nos pondremos en contacto contigo</small>
+            <small>Al precionar comprar se abríra Whatsapp <br /> con tu orden lista para ser enviada</small>
             <button type="button" className="btn btn-outline-primary" onClick={handleBuy}>Comprar</button>
         </div>
 

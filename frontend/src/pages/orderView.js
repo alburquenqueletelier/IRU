@@ -33,51 +33,62 @@ export const OrderView = () => {
 
     return (
         <div className="container">
+            {/* Toast */}
+            <div className="toast-container position-fixed bottom-0 end-0 p-3">
+                <div id="liveToast" className="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div className="toast-header bg-light">
+                        <strong>{store?.toast}</strong>
+                        <img src={store.toast == "Añadido con éxito" ? "https://cdn-icons-png.flaticon.com/512/190/190411.png" : "https://cdn-icons-png.flaticon.com/512/190/190406.png"} className="rounded me-auto" alt="..." style={{ width: "2rem" }} />
+                        <button type="button" className="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                </div>
+            </div>
+            {/* Toast */}
             <h1>Tu pedido</h1>
             <div className="d-flex justify-content-evenly">
 
-                
-                    {(store.order.combos.length > 0 || store.order.rolls.length > 0)
-                        ? <div className="row row-cols-1 me-1 justify-content-center">
-                            {store.order.rolls?.map((item, index) => {
-                                let aux = store.rolls?.filter(product => product.id == item.id)[0];
-                                return (<div key={index} className="col-10 col-md-10">
-                                    <OrderCard
-                                        
-                                        id={item.id}
-                                        product="rolls"
-                                        title={aux?.name}
-                                        price={aux?.price}
-                                        amount={item.amount}
-                                        image={aux?.image}
-                                    />
-                                    </div>
-                                );
-                            })}
-                            {store.order.combos?.map((item, index) => {
-                                let aux = store.combos?.filter(product => product.id == item.id)[0];
-                                return (<div key={index} className="col-10 col-md-10">
-                                    <OrderCard
-                                      
-                                        id={item.id}
-                                        product="combos"
-                                        title={aux?.name}
-                                        price={aux?.price}
-                                        amount={item.amount}
-                                        image={aux?.image}
-                                    />
-                                    </div>
-                                );
-                            })}
-                            
-                        </div>
-                        : (store.order.rolls.length == 0 && store.order.combos.length == 0)
-                            ? <h2>No hay productos. <Link to="/products">Agregalos...</Link></h2>
-                            : <Spinners />
-                    }
-   
+
+                {(store.order.combos.length > 0 || store.order.rolls.length > 0)
+                    ? <div className="row row-cols-1 me-1 justify-content-center">
+                        {store.order.rolls?.map((item, index) => {
+                            let aux = store.rolls?.filter(product => product.id == item.id)[0];
+                            return (<div key={index} className="col-10 col-md-10">
+                                <OrderCard
+
+                                    id={item.id}
+                                    product="rolls"
+                                    title={aux?.name}
+                                    price={aux?.price}
+                                    amount={item.amount}
+                                    image={aux?.image}
+                                />
+                            </div>
+                            );
+                        })}
+                        {store.order.combos?.map((item, index) => {
+                            let aux = store.combos?.filter(product => product.id == item.id)[0];
+                            return (<div key={index} className="col-10 col-md-10">
+                                <OrderCard
+
+                                    id={item.id}
+                                    product="combos"
+                                    title={aux?.name}
+                                    price={aux?.price}
+                                    amount={item.amount}
+                                    image={aux?.image}
+                                />
+                            </div>
+                            );
+                        })}
+
+                    </div>
+                    : (store.order.rolls.length == 0 && store.order.combos.length == 0)
+                        ? <h2>No hay productos. <Link to="/products">Agregalos...</Link></h2>
+                        : <Spinners />
+                }
+
                 {(store.order.rolls.length > 0 || store.order.combos.length > 0) &&
-                    <Detail displayMode=" d-md-flex d-none" deliveryTag="deliveryTag" retiroTag="retiroTag"/>
+                    <Detail displayMode=" d-md-flex d-none" deliveryTag="deliveryTag" retiroTag="retiroTag" />
                 }
             </div>
 
@@ -98,7 +109,7 @@ export const OrderView = () => {
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
-                            <Detail displayMode="d-flex" deliveryTag="deliveryModalTag" retiroTag="retiroModalTag"/>
+                            <Detail displayMode="d-flex" deliveryTag="deliveryModalTag" retiroTag="retiroModalTag" />
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
