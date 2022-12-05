@@ -44,15 +44,15 @@ export const OrderView = () => {
                 </div>
             </div>
             {/* Toast */}
-            <h1>Tu pedido</h1>
-            <div className="d-flex justify-content-evenly">
+            <h1 className="text-center">Tu pedido</h1>
+            <div className="d-flex justify-content-evenly pb-1">
 
 
                 {(store.order.combos.length > 0 || store.order.rolls.length > 0)
-                    ? <div className="row row-cols-1 me-1 justify-content-center">
+                    ? <div className="col-sm-8 col-10 me-1">
                         {store.order.rolls?.map((item, index) => {
                             let aux = store.rolls?.filter(product => product.id == item.id)[0];
-                            return (<div key={index} className="col-10 col-md-10">
+                            return (<div key={index} className="col-auto">
                                 <OrderCard
 
                                     id={item.id}
@@ -67,7 +67,7 @@ export const OrderView = () => {
                         })}
                         {store.order.combos?.map((item, index) => {
                             let aux = store.combos?.filter(product => product.id == item.id)[0];
-                            return (<div key={index} className="col-10 col-md-10">
+                            return (<div key={index} className="col-auto">
                                 <OrderCard
 
                                     id={item.id}
@@ -80,7 +80,6 @@ export const OrderView = () => {
                             </div>
                             );
                         })}
-
                     </div>
                     : (store.order.rolls.length == 0 && store.order.combos.length == 0)
                         ? <h2>No hay productos. <Link to="/products">Agregalos...</Link></h2>

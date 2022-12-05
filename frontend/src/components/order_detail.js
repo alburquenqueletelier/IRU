@@ -170,13 +170,13 @@ export const Detail = (props) => {
                 {store.order.rolls && store.order.rolls.map((item, index) => {
                     { total = total + item.amount * store.rolls.filter(roll => roll.id == item.id)[0]?.price; }
                     return <li className="list-group-item d-flex justify-content-between" key={index}>
-                        <span>{store.rolls.filter(roll => roll.id == item.id)[0]?.name}</span> <span>x</span> <span>{item.amount}</span> <span className="ms-1">{actions.valueToPrice(item.amount, store.rolls.filter(roll => roll.id == item.id)[0]?.price)}</span>
+                        <span>{store.rolls.filter(roll => roll.id == item.id)[0]?.name}</span> <span className="ms-auto pe-1">x{item.amount}</span><span className="ms-1">{actions.valueToPrice(item.amount, store.rolls.filter(roll => roll.id == item.id)[0]?.price)}</span>
                     </li>;
                 })}
                 {store.order.combos && store.order.combos.map((item, index) => {
                     { total = total + item.amount * store.combos.filter(combo => combo.id == item.id)[0]?.price; }
                     return <li className="list-group-item d-flex justify-content-between" key={index}>
-                        <span>{store.combos.filter(combo => combo.id == item.id)[0]?.name}</span> <span>x</span><span>{item.amount} </span><span className="ms-1"> {actions.valueToPrice(item.amount, store.combos.filter(combo => combo.id == item.id)[0]?.price)}</span>
+                        <span>{store.combos.filter(combo => combo.id == item.id)[0]?.name}</span> <span className="ms-auto pe-1">x{item.amount}</span><span className="ms-1"> {actions.valueToPrice(item.amount, store.combos.filter(combo => combo.id == item.id)[0]?.price)}</span>
                     </li>;
                 })}
                 <li className="list-group-item d-flex justify-content-between">

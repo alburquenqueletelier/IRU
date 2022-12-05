@@ -15,7 +15,7 @@ export const AboutUs = () => {
             <div className="col-10 m-auto">
                 <p>
                     Somos una pareja 👩‍❤️‍👨 de la V región que nos encantan los rollitos de canela 🍥.
-                    Teníamos nuestros <strong>Cinnamon Rolls</strong> favoritos (Cinnabon), sin embargo en nuestra ciudad es difícil
+                    Teníamos nuestros <strong>Cinnamon Rolls</strong> favoritos, sin embargo en nuestra ciudad es difícil
                     poder conseguirlos 🙅‍♀️. Hicimos una búsqueda 🕵 para encontrar unos parecidos pero no logramos
                     dar con alguno que cumplieran con nuestro ideal 🥺. Al no encontrar lo que buscábamos decidimos hacer nuestros propios
                     Rollitos de canela (con juegos de azar y mujerzuelas 🤖).
