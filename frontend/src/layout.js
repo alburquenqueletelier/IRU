@@ -5,6 +5,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Home } from "./pages/home";
 import { ProductsView } from "./pages/productsView";
 import { OrderView } from "./pages/orderView";
+import { Contact } from "./pages/contactView";
+import { AboutUs } from "./pages/aboutView";
 import { Navbar } from "./components/navbar";
 import { Footer } from "./components/footer";
 import ScrollToTop from "./components/scroll_to_top";
@@ -25,6 +27,8 @@ const Layout = () => {
           <Navbar />
 
           <Routes>
+            <Route element={<AboutUs />} path="/about-us" />
+            <Route element={<Contact />} path="/contact" />
             <Route element={<OrderView />} path="/order" />
             <Route element={<ProductsView />} path="/products" />
             <Route element={<Home />} path="/" />
