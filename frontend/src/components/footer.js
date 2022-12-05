@@ -7,7 +7,7 @@ import React from "react";
 export const Footer = () => {
 //   const { store } = useContext(Context);
   return (
-  <div>
+  <div className="bg-warning pb-1">
     <h2 className="text-center">Siguenos en nuestras redes sociales</h2>
     <div className="row justify-content-center">
       <div className="col-auto">
