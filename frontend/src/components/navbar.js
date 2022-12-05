@@ -55,7 +55,7 @@ export const Navbar = () => {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to="/order" className="nav-link" href="#">
+                <Link to="/order" className="nav-link">
                   Pedido
                   {(store.order.rolls?.length > 0 || store.order.combos?.length > 0) &&
                     <span className="badge text-bg-secondary">{store.order.rolls.length + store.order.combos.length}</span>
@@ -63,7 +63,10 @@ export const Navbar = () => {
                 </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">Contacto</a>
+                <Link to="/contact" className="nav-link">Contacto</Link>
+              </li>
+              <li className="nav-item">
+                <Link to="/about-us" className="nav-link">Nosotros</Link>
               </li>
             </ul>
             {/* <form className="d-md-flex d-inline-block text-center" onSubmit={handlelogin}>

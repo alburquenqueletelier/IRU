@@ -1,13 +1,11 @@
 import React from "react";
-// import { Context } from "../store/appContext";
-
-// import "../../styles/Footer.css";
+import "../styles/footer.css";
 
 // mt-auto
 export const Footer = () => {
 //   const { store } = useContext(Context);
   return (
-  <div className="bg-warning pb-1">
+  <div id="footer" className="pb-1">
     <h2 className="text-center">Siguenos en nuestras redes sociales</h2>
     <div className="row justify-content-center">
       <div className="col-auto">
