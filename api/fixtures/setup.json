@@ -40,6 +40,22 @@
         }  
     },
     {
+        "model": "api.topping",
+        "pk": 4,
+        "fields": {
+            "name": "Crema de avellanas",
+            "description": "Salsa de Crema de avellanas (Nutella)"
+        }  
+    },
+    {
+        "model": "api.topping",
+        "pk": 5,
+        "fields": {
+            "name": "Chocolate",
+            "description": "Salsa de Chocolate"
+        }  
+    },
+    {
         "model": "api.Aggregate",
         "pk": 1,
         "fields": {
