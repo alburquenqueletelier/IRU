@@ -1,10 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { Context } from "../store/appContext";
-window.bootstrap = require("bootstrap");
 import { ProductCard } from "../components/product_card";
 import { Spinners } from "../components/spinners";
 import { ProductDetail } from "../components/product_detail";
 import { CategoryNav } from "../components/category_nav";
+window.bootstrap = require("bootstrap");
 
 export const ProductsView = () => {
 
