@@ -12,6 +12,8 @@ import  HomeMap  from "../components/map_iru_loc";
 export const Home = () => {
 
   const { store, actions } = useContext(Context);
+  // const [image] = useState('http:127.0.0.1:8000\rolls\logo\logo_color.png');
+  const [image] = useState(process.env.REACT_APP_BACKEND_URL + '/media/rolls/logo/logo_color.png');
 
   return (
     <div className="container-fluid">
@@ -131,7 +133,7 @@ export const Home = () => {
     <Registerform /> */}
 
       <div className="logo-container">
-        <img src="http://127.0.0.1:8000/media/rolls/logo/logo_color.png" className="img-fluid logo-home" alt="Logo IRU"></img>
+        <img src={image} className="img-fluid logo-home" alt="Logo IRU"></img>
       </div>
     </div>
   );

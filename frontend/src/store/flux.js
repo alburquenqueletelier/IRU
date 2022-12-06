@@ -42,7 +42,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// GET action functions (Consume API) //
 			/////////////////////////////////////
 			getAllUsers: ()=>{
-				fetch(process.env.REACT_APP_BACKEND_URL+"/users/")
+				fetch(process.env.REACT_APP_BACKEND_URL+"/api"+"/users/")
 				.then(res=>res.json())
 				.then(data=>{
 					// console.log(data);
@@ -51,7 +51,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				});
 			},
 			getAllRolls: ()=>{
-				fetch(process.env.REACT_APP_BACKEND_URL+"/rolls/")
+				fetch(process.env.REACT_APP_BACKEND_URL+"/api"+"/rolls/")
 				.then(res=>res.json())
 				.then(data=>{
 					// console.log(data);
@@ -60,7 +60,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				});
 			},
 			getAllBases:()=>{
-				fetch(process.env.REACT_APP_BACKEND_URL+"/bases/")
+				fetch(process.env.REACT_APP_BACKEND_URL+"/api"+"/bases/")
 				.then(res=>res.json())
 				.then(data=>{
 					// console.log(data);
@@ -69,7 +69,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				});
 			},
 			getAllToppings:()=>{
-				fetch(process.env.REACT_APP_BACKEND_URL+"/salsas/")
+				fetch(process.env.REACT_APP_BACKEND_URL+"/api"+"/salsas/")
 				.then(res=>res.json())
 				.then(data=>{
 					// console.log(data);
@@ -78,7 +78,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				});
 			},
 			getAllAggregates:()=>{
-				fetch(process.env.REACT_APP_BACKEND_URL+"/agregados/")
+				fetch(process.env.REACT_APP_BACKEND_URL+"/api"+"/agregados/")
 				.then(res=>res.json())
 				.then(data=>{
 					// console.log(data);
@@ -87,7 +87,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				});
 			},
 			getAllCombos:()=>{
-				fetch(process.env.REACT_APP_BACKEND_URL+"/combos/")
+				fetch(process.env.REACT_APP_BACKEND_URL+"/api"+"/combos/")
 				.then(res=>res.json())
 				.then(data=>{
 					// console.log(data);
@@ -96,7 +96,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				});
 			},
 			getAllOffers:()=>{
-				fetch(process.env.REACT_APP_BACKEND_URL+"/offers/")
+				fetch(process.env.REACT_APP_BACKEND_URL+"/api"+"/offers/")
 				.then(res=>res.json())
 				.then(data=>{
 					// console.log(data);
@@ -105,7 +105,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				});
 			},
 			getAllCarousels:()=>{
-				fetch(process.env.REACT_APP_BACKEND_URL+"/carousels/")
+				fetch(process.env.REACT_APP_BACKEND_URL+"/api"+"/carousels/")
 				.then(res=>res.json())
 				.then(data=>{
 					// console.log(data);
@@ -114,7 +114,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				});
 			},
 			// getAllTest:()=>{
-			// 	fetch(process.env.REACT_APP_BACKEND_URL+"/test/")
+			// 	fetch(process.env.REACT_APP_BACKEND_URL+"/api"+"/test/")
 			// 	.then(res=>res.json())
 			// 	.then(data=>{
 			// 		// console.log(data);
@@ -142,7 +142,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return cookieValue;
 				}
 				var csrftoken = getCookie('csrftoken');
-				fetch(process.env.REACT_APP_BACKEND_URL+'/views/login_token', {
+				fetch(process.env.REACT_APP_BACKEND_URL+"/api"+'/views/login_token', {
 					method: 'POST',
 					headers: {
 						"Content-type": "application/json",
@@ -225,7 +225,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				// 	const formdata = new FormData();
 				// 	formdata.append("imagen", image);
 	
-				// 	fetch(process.env.REACT_APP_BACKEND_URL+"/test/", {
+				// 	fetch(process.env.REACT_APP_BACKEND_URL+"/api"+"/test/", {
 				// 		method: 'POST',
 				// 		// headers: {
 				// 		// 	"Content-type": "multipart/form-data",
@@ -283,8 +283,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// getMessage: async () => {
 			// 	try{
 			// 		// fetching data from the backend
-			// 		// Cambiar ruta por porecess.env.BACKEND_URL cuando termine la pagina
-			// 		const resp = await fetch(process.env.REACT_APP_BACKEND_URL+"/hello");
+			// 		// Cambiar ruta por porecess.env.BACKEND_URL+"/api" cuando termine la pagina
+			// 		const resp = await fetch(process.env.REACT_APP_BACKEND_URL+"/api"+"/hello");
 			// 		const data = await resp.json();
 			// 		setStore({ message: data.mssg });
 			// 		// don't forget to return something, that is how the async resolves

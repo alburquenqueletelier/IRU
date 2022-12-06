@@ -11,7 +11,7 @@ export const Navbar = () => {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [image, setImage] = useState("");
+  const [image] = useState(process.env.REACT_APP_BACKEND_URL+'/media/rolls/logo/logo_timbre.png');
 
   const handlelogin = (e) => {
     e.preventDefault();
@@ -34,17 +34,6 @@ export const Navbar = () => {
     bsCollapse.toggle();
     
   };
-
-  useEffect(()=>{
-    if (process.env.NODE_ENV == 'development') {
-      setImage("http://127.0.0.1:8000/media/rolls/logo/logo_timbre.png");
-      console.log('pase por development');
-    }
-    else {
-      setImage('https://www.pythonanywhere.com/user/baal1992/files/home/baal1992/IRU/media/logo/logo_timbre.png');
-      console.log('pase por production');
-    }
-  },[]);
 
   return (
     <>
