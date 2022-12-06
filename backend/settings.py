@@ -41,15 +41,6 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 CORS_ALLOW_ALL_ORIGINS = True # If this is used then `CORS_ALLOWED_ORIGINS` will not have any effect
 
 CORS_ALLOW_CREDENTIALS = True
-# White listing the localhost:3000 port
-# for React
-CORS_ALLOWED_ORIGINS = [
-    env('REACT_APP_SERVER_URL')
-]
-
-CSRF_TRUSTED_ORIGINS = [
-    env('REACT_APP_SERVER_URL')
-]
 
 # Application definition
 
@@ -104,9 +95,14 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 DATABASES = {
     'default': env.db() or {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'iru', # This is where you put the name of the db file. 
-                 # If one doesn't exist, it will be created at migration time.
+        'ENGINE': 'django.db.backends.mysql',
+        'HOST': 'baal1992.mysql.pythonanywhere-services.com',
+        'NAME': 'baal1992$iru',
+        'USER': 'baal1992',
+        'PASSWORD': 'soyelmejor92',
+        'OPTIONS': {
+            'init_command':"SET sql_mode='STRICT_TRANS_TABLES'"
+            }
     }
 }
 
@@ -150,6 +146,10 @@ USE_TZ = True
 MEDIA_URL = 'media/'
 
 STATIC_URL = '/static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
+
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
