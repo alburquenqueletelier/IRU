@@ -36,7 +36,7 @@ SECRET_KEY = env('SECRET_KEY')
 # False if not in os.environ because of casting above
 DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 CORS_ALLOW_ALL_ORIGINS = True # If this is used then `CORS_ALLOWED_ORIGINS` will not have any effect
 
