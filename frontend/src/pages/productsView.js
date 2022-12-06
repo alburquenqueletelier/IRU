@@ -21,7 +21,7 @@ export const ProductsView = () => {
     {salsa: "Chocolate", urlImage: "https://cdnx.jumpseller.com/supermercadorivera/image/10114499/resize/470/645?1652366109"},
     {salsa: "Frosting", urlImage: "https://i.blogs.es/c07e43/frosting_de_queso_crema/450_1000.jpeg"},
     {salsa: "Glaseado", urlImage: "https://cocinaypunto.com/wp-content/uploads/2013/10/2-1.jpg"},
-    {salsa: "Nuttela", urlImage: "https://jumbo.vtexassets.com/arquivos/ids/396596/Nutella-ferrero-frasco-450-g.jpg?v=637469296628100000"},
+    {salsa: "Crema de avellanas", urlImage: "https://jumbo.vtexassets.com/arquivos/ids/396596/Nutella-ferrero-frasco-450-g.jpg?v=637469296628100000"},
     {salsa: "Manjar", urlImage: "https://static.emol.cl/emol50/Fotos/2020/11/02/file_20201102112610.png"},
   ];
   const aggregateImages = [
