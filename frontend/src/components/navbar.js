@@ -11,6 +11,7 @@ export const Navbar = () => {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [image, setImage] = useState("");
 
   const handlelogin = (e) => {
     e.preventDefault();
@@ -34,13 +35,24 @@ export const Navbar = () => {
     
   };
 
+  useEffect(()=>{
+    if (process.env.NODE_ENV == 'development') {
+      setImage("http://127.0.0.1:8000/media/rolls/logo/logo_timbre.png");
+      console.log('pase por development');
+    }
+    else {
+      setImage('https://www.pythonanywhere.com/user/baal1992/files/home/baal1992/IRU/media/logo/logo_timbre.png');
+      console.log('pase por production');
+    }
+  },[]);
+
   return (
     <>
       <nav className="navbar navbar-expand-md sticky-top">
         <div className="container-fluid">
           <a className="navbar-brand" href="/">
             <div className="container-logo-home">
-              <img src="http://127.0.0.1:8000/media/rolls/logo/logo_timbre.png" alt="logo-home" />
+              <img src={image} alt="logo-home" />
             </div>
           </a>
           {/* <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" onClick={(e)=>handleToggle(e)}> */}
