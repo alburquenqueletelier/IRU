@@ -186,9 +186,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 					order.rolls.filter(prod=>prod.id == id).length <= 0 
 					? order.rolls.push(add) 
 					: order.rolls.map(prod=>{
-						return prod.id === id
-						? {...prod, amount: amount}
-						: prod;
+						if(prod.id === id)
+							return {...prod, amount: amount};
+						else return prod;
 					});
 				} else {
 					order.combos.push(add);
