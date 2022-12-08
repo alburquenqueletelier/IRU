@@ -1,24 +1,19 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 
 import "../styles/carousel.css";
 
 export const Carousel = () => {
     const {store} = useContext(Context);
-    // title={item.name} description={item.description} image={item.image} price={item.price}
-
-    // useEffect(()=>{
-    //     let carousel = bootstrap.Carousel.getInstance('#carouselExampleIndicators');
-    //     carousel.trigger();
-    //     // console.log('caoursel active', document.querySelector('.carousel-item'));
-    // },[]);
 
     return (
         <div id="carouselExampleIndicators" className="carousel slide carousel-fade" data-bs-interval="3000" data-bs-ride="carousel">
             <div className="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                {store.carousels &&
+                store.carousels.map((item, index)=>{
+                    return <button key={index} type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to={index} className={index==0 ? "active" : ""} aria-current={index==0 ? "true" : ""} aria-label={"Slide "+(index+1)}></button>;
+                })
+                }
             </div>
             <div className="carousel-inner">
                 {store.carousels &&
@@ -34,11 +29,11 @@ export const Carousel = () => {
             </div>
             <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
                 <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span className="visually-hidden">Previous</span>
+                <span className="visually-hidden">Atrás</span>
             </button>
             <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
                 <span className="carousel-control-next-icon" aria-hidden="true"></span>
-                <span className="visually-hidden">Next</span>
+                <span className="visually-hidden">Siguiente</span>
             </button>
         </div>
     );
