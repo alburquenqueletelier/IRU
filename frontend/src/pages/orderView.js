@@ -6,6 +6,7 @@ import "../styles/orderview.css";
 import { Spinners } from "../components/spinners";
 import { OrderCard } from "../components/order_card";
 import { Detail } from "../components/order_detail";
+import { ToastProduct } from "../components/toastProduct";
 
 
 export const OrderView = () => {
@@ -41,7 +42,8 @@ export const OrderView = () => {
     return (
         <div className="container">
             {/* Toast */}
-            <div className="toast-container position-fixed bottom-0 end-0 p-3">
+            <ToastProduct />
+            {/* <div className="toast-container position-fixed bottom-0 end-0 p-3">
                 <div id="liveToast" className="toast" role="alert" aria-live="assertive" aria-atomic="true">
                     <div className="toast-header bg-light">
                         <strong>{store?.toast}</strong>
@@ -49,7 +51,7 @@ export const OrderView = () => {
                         <button type="button" className="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                     </div>
                 </div>
-            </div>
+            </div> */}
             {/* Toast */}
             <h1 className="text-center">Tu pedido</h1>
             <div className="d-flex justify-content-evenly pb-1">

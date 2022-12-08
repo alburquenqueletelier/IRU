@@ -4,6 +4,7 @@ import { Spinners } from "../components/spinners";
 import { ProductDetail } from "../components/product_detail";
 import { CategoryNav } from "../components/category_nav";
 import { Context } from "../store/appContext";
+import { ToastProduct } from "../components/toastProduct";
 window.bootstrap = require("bootstrap");
 
 export const ProductsView = () => {
@@ -35,7 +36,8 @@ export const ProductsView = () => {
   return (
     <div className="container-fluid">
       {/* Toast */}
-      <div className="toast-container position-fixed bottom-0 end-0 p-3">
+      <ToastProduct />
+      {/* <div className="toast-container position-fixed bottom-0 end-0 p-3">
         <div id="liveToast" className="toast" role="alert" aria-live="assertive" aria-atomic="true">
           <div className="toast-header bg-light">
             <strong>{store?.toast}</strong>
@@ -43,7 +45,7 @@ export const ProductsView = () => {
             <button type="button" className="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
           </div>
         </div>
-      </div>
+      </div> */}
       {/* Toast */}
       <ProductDetail />
       <div className="container-sm">
