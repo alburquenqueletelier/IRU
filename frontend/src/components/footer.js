@@ -3,8 +3,8 @@ import { useLocation } from 'react-router-dom';
 import "../styles/footer.css";
 
 export const Footer = () => {
-  let location = useLocation();
   const [fixPosition, setFixPosition] = useState(false);
+  let location = useLocation();
   useEffect(() => {
     console.log('location changed!');
     if (window.innerHeight > document.querySelector('body').offsetHeight){
@@ -12,7 +12,7 @@ export const Footer = () => {
     } else {
       setFixPosition(false);
     }
-  }, [location]);
+  }, [[],location]);
 
   return (
     <div id="footer" className={fixPosition ? "pb-1 fixed-bottom" : "pb-1"}>
