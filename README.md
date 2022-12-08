@@ -88,11 +88,22 @@ $ python manage.py makemigrations
 .
 $ python manage.py migrate
 ```
+
+Es posible que ocurra un error debido a que el proyecto utiliza el modelo User de Django con modificaciones.
+Si eso ocurre, prueba primero migrar la aplicación y luego migra el proyecto:
+```
+$ python manage.py makemigrations api
+.
+.
+.
+$ python manage.py migrate api
+```
+
 6. Si todo salió correcto ejecuta `$ python manage.py runserver`, dirigete al buscador e ingresa http://localhost.com:8000/admin o http://127.0.0.1:8000/admin y debieses poder ver la pagina de administrador de Django. Recuerda generar un super usuario escribiendo en la consola `$ python manage.py createsuperuser`
 
 ### Frontend Install
 1. Desde la terminal dirigete a la carpeta frontend (`$ cd frontend`) y ejecuta `npm install`
-2. Ejecuta npm run start para abrir el servidor de desarrollo. Recuerda tener otra consola abierta con el servidor de desarrollo de Django para que puedan funcionar la aplicación correctamente.
+2. Ejecuta npm run start para abrir el servidor de desarrollo. Recuerda tener otra consola abierta con el servidor de desarrollo de Django para que pueda funcionar la aplicación correctamente.
 
 ---
 
