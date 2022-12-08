@@ -23,8 +23,7 @@ export const Home = () => {
           <p className="text-center">
             Somos un emprendimiento que busca deleitar a los amantes de los Cinnamon Rolls (rollitos de canela).
             Utilizamos productos de calidad y ponemos nuestra pasión para poder entregar una experiencia única,
-            buscando el sabor preciso para que puedas comer sin empalagarte. Si quieres saber más sobre quienes
-            somos puedes pinchar <a href="#">aquí</a>
+            buscando el sabor perfecto para que puedas disfrutar de estas delicias. 
           </p>
         </div>
       </div>
@@ -44,12 +43,10 @@ export const Home = () => {
           <h1 className="text-center">¿Como Pedir?</h1>
           {/* <p className="text-center">A través de Whatsapp o Instagram</p> */}
           <ol >
-            <li>Dirigete a la sección <Link to="/products">productos</Link></li>
+            <li>Dirigete a la sección <Link to="/products">Menú</Link></li>
             <li>Busca lo que desees, selecciona la cantidad y presiona añadir</li>
-            <li>Dirigete a la sección pedido y verifica tus productos</li>
-            <li>Selecciona metodo de entrega y de pago</li>
-            <li>Dale a comprar para generar nota de compra</li>
-            <li>Te llegara un Whatsapp para confirmar pedido y listo!</li>
+            <li>Dirigete al carrito y verifica tus productos</li>
+            <li>Dale a comprar para enviar tu pedido por Whatsapp</li>
           </ol>
         </div>
       </div>

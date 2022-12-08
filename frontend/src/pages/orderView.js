@@ -11,25 +11,32 @@ import { Detail } from "../components/order_detail";
 export const OrderView = () => {
 
     const { store, actions } = useContext(Context);
-    // const [delivery, setDelivery] = useState(null);
-    // var total = 0;
+    const [topButtonModal, setTopButtonModal] = useState(null);
 
-    // const locationDelivery = [
-    //     { name: "Quilpué", price: 2000 },
-    //     { name: "Villa Alemana", price: 2000 },
-    //     { name: "Viña del Mar", price: 3000 }
-    // ];
+    const resizeObserver = new ResizeObserver((element)=>{
+        if (window.innerWidth <= 767){
+            const buttonModalDetail = document.querySelector('#modal-order-button');
+            buttonModalDetail.style.position = 'fixed';
+            buttonModalDetail.style.top = (element[0].target.offsetHeight+5)+'px';
+            buttonModalDetail.style.left = (window.innerWidth-100)+'px';
+            // console.log('height navbar: ', element);
+        } 
+    });
 
-    // const handleDelivery = (e) => {
-    //     let value = e.target.value;
-    //     console.log(value);
-    //     if (locationDelivery.map(loc => loc.name).includes(value)) {
-    //         setDelivery(locationDelivery.filter(loc => loc.name == value)[0].price);
-    //     } else {
-    //         setDelivery(null);
-    //     }
-    // };
-
+    const handleButtonModal = ()=>{
+        const navbar = document.querySelector('#navbarSupportedContent');
+        console.log(navbar);
+        // const navbar = bootstrap.Collapse.getInstance(document.querySelector('#navbarSupportedContent')); // eslint-disable-line
+        resizeObserver.observe(navbar);
+        // if (window.innerWidth <= 767 && navbar){
+        //     console.log(navbar._config.toggle);
+        // } else {
+        //     console.log('mas de 767px');
+        // }
+    };
+    useEffect(()=>{
+        resizeObserver.observe(document.querySelector('nav'));
+    }, []);
 
     return (
         <div className="container">

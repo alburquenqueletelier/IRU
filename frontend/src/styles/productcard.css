@@ -8,6 +8,7 @@
 
 .card{
     width: 100%;
+    background-color: #e2bc91 !important;
 }
 
 .card-body > div p{

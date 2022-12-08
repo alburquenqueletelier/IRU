@@ -6,12 +6,12 @@
     border: 1px solid black;
 }
 
-#modal-order-button{
+/* #modal-order-button{
     position: fixed;
     top: 85px;
     right: 40px;
     
-}
+} */
 
 #modal-order-button img{
     max-width: 30px;
