@@ -6,7 +6,7 @@ import "../styles/home.css";
 import { Registerform } from "../components/register_form";
 import { Carousel } from "../components/carousel";
 import { Spinners } from "../components/spinners";
-import  HomeMap  from "../components/map_iru_loc";
+import HomeMap from "../components/map_iru_loc";
 
 
 export const Home = () => {
@@ -21,9 +21,9 @@ export const Home = () => {
         <div className="col-8">
           <h1 className="text-center">I Roll You - Cinnamon</h1>
           <p className="text-center">
-            Somos un emprendimiento que busca deleitar a los amantes de los Cinnamon Rolls (rollitos de canela).
+            Somos un emprendimiento que busca deleitar a los amantes de los Cinnamon Rolls.
             Utilizamos productos de calidad y ponemos nuestra pasión para poder entregar una experiencia única,
-            buscando el sabor perfecto para que puedas disfrutar de estas delicias. 
+            buscando el sabor perfecto para que puedas disfrutar de estas delicias.
           </p>
         </div>
       </div>
@@ -56,50 +56,50 @@ export const Home = () => {
         <div className="text-center ">
           <p>Puedes retirar en nuestro local, Estación El Sol o Estación Quilpué</p>
           <div className="d-flex justify-content-center my-2">
-          <HomeMap />
+            <HomeMap />
 
           </div>
           <p>Delivery con costo adicional, gratis por compras sobre $15.000</p>
           <div className="table-responsive">
 
-          <table className="table table-borderless m-auto w-auto">
-            <thead>
-              <tr>
-                <td>
-                  Ciudad
-                </td>
-                <td>
-                  Tarifa
-                </td>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  Quilpué
-                </td>
-                <td>
-                  $2.000
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Villa Alemana
-                </td>
-                <td>
-                  $2.000
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Viña del Mar
-                </td>
-                <td>
-                  $3.000
-                </td>
-              </tr>
-            </tbody>
-          </table>
+            <table className="table table-borderless m-auto w-auto">
+              <thead>
+                <tr>
+                  <td>
+                    Ciudad
+                  </td>
+                  <td>
+                    Tarifa
+                  </td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    Quilpué
+                  </td>
+                  <td>
+                    $2.000
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    Villa Alemana
+                  </td>
+                  <td>
+                    $2.000
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    Viña del Mar
+                  </td>
+                  <td>
+                    $3.000
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
 
@@ -117,18 +117,6 @@ export const Home = () => {
           <li>Domingos: 10:00h a 13:00h y 18:00h a 21:00h</li>
         </ul>
       </div>
-
-      <hr id="register"></hr>
-    {/* <h1 className="text-center">Registrate y Disfruta</h1>
-    <div className="d-flex justify-content-center">
-      <ul className="list-group-numbered">
-        <li className="list-group-item">Haz tus pedidos de forma rápida</li>
-        <li className="list-group-item">Puedes repetir el último pedido</li>
-        <li className="list-group-item">Disfrutar de beneficios</li>
-      </ul>
-    </div>
-    <Registerform /> */}
-
       <div className="logo-container">
         <img src={image} className="img-fluid logo-home" alt="Logo IRU"></img>
       </div>
