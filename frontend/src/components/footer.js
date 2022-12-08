@@ -6,7 +6,6 @@ export const Footer = () => {
   const [fixPosition, setFixPosition] = useState(false);
   let location = useLocation();
   useEffect(() => {
-    console.log('location changed!');
     if (window.innerHeight > document.querySelector('body').offsetHeight){
       setFixPosition(true);
     } else {

@@ -30,7 +30,7 @@ export const ProductCard = (props) => {
                     : <div className="mt-auto d-flex justify-content-around"><p className="card-text">Cantidad: <span>{amount}</span> </p> <p className="card-text">Valor: <span>{valueToPrice(amount, props.price)}</span></p></div>
                 }
                 <div className="mt-auto row row-cols-2">
-                    <button className={"btn btn-" + (props.buttonMessage === 'Quitar' ? 'danger' : 'primary')} onClick={() => props.addOrRemove(props.product, props.id, props.buttonMessage == "Añadir" && amount)}>{props.buttonMessage}</button>
+                    <button className={"btn btn-outline-" + (props.buttonMessage === 'Quitar' ? 'danger' : 'primary')} onClick={() => props.addOrRemove(props.product, props.id, props.buttonMessage == "Añadir" && amount)}>{props.buttonMessage}</button>
                     <button className="btn btn-outline-success" onClick={()=>actions.displayDetail(props.id, props.product)}>Detalles</button>
                 </div>
             </div>

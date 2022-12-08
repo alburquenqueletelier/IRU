@@ -113,14 +113,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					setStore({carousels:data});
 				});
 			},
-			// getAllTest:()=>{
-			// 	fetch(process.env.REACT_APP_BACKEND_URL+"/api"+"/test/")
-			// 	.then(res=>res.json())
-			// 	.then(data=>{
-			// 		// console.log(data);
-			// 		setStore({test:data});
-			// 	});
-			// },
 			/////////////////////////////////////
 			// POST action (Consume API) //
 			/////////////////////////////////////
@@ -158,7 +150,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					else throw new Error(resp);
 				})
 				.then(data=>{
-					console.log(data);
+					// console.log(data);
 					setStore({user: data});
 				})
 				.catch(error=>console.log(error));
@@ -204,7 +196,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			editOrder: (product, id, amount) => {
 				const { rolls, combos, order } = getStore();
-				console.log('product',product, 'id', id, 'amount', amount);
+				// console.log('product',product, 'id', id, 'amount', amount);
 				if (product == 'rolls'){
 					order.rolls.map(prod=>{
 						if (prod.id == id) prod.amount = amount;
@@ -220,33 +212,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({order:order});
 				return "Orden editada";
 			},
-			// postTest: (e, image)=>{
-				// 	e.preventDefault();
-				// 	const formdata = new FormData();
-				// 	formdata.append("imagen", image);
-	
-				// 	fetch(process.env.REACT_APP_BACKEND_URL+"/api"+"/test/", {
-				// 		method: 'POST',
-				// 		// headers: {
-				// 		// 	"Content-type": "multipart/form-data",
-				// 		// 	// "Authentication": {"Bearer " + token} u otro metodo
-				// 		// },
-				// 		body: formdata
-				// 	})
-				// 	.then(res=>res.json())
-				// 	.then(data=>{
-				// 		// console.log(data);
-				// 		// setStore({data:data}) si es necesrio
-				// 	})
-				// 	.catch(error=>console.log(error));
-				// 	return false;
-				// },
 			// DELETE action (Consume API)
 			deleteOrder: (product, id) => {
 				const {order} = getStore();
 				if (product == 'rolls') order.rolls = order.rolls.filter(prodID => prodID.id !== id);
 				else order.combos = order.combos.filter(prodID => prodID.id !== id);
-				setStore({order:order, toast:"Producto eliminado"});
+				setStore({order:order, toast:"Producto retirado"});
 				sessionStorage.setItem("order", JSON.stringify(order));
 				const toastLiveExample = document.getElementById('liveToast');
 				const toast = new bootstrap.Toast(toastLiveExample, {delay: 2000}); // eslint-disable-line
@@ -278,22 +249,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				// console.log(myModal);
 				myModal.show();
 			},
-			// PUT action (Consume API)
-
-			// getMessage: async () => {
-			// 	try{
-			// 		// fetching data from the backend
-			// 		// Cambiar ruta por porecess.env.BACKEND_URL+"/api" cuando termine la pagina
-			// 		const resp = await fetch(process.env.REACT_APP_BACKEND_URL+"/api"+"/hello");
-			// 		const data = await resp.json();
-			// 		setStore({ message: data.mssg });
-			// 		// don't forget to return something, that is how the async resolves
-			// 		return console.log(data);
-			// 	}catch(error){
-			// 		console.log("Error loading message from backend", error);
-			// 	}
-			// },
-			
 		}
 	};
 };

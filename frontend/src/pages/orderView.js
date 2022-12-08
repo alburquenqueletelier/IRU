@@ -24,17 +24,6 @@ export const OrderView = () => {
         } 
     });
 
-    const handleButtonModal = ()=>{
-        const navbar = document.querySelector('#navbarSupportedContent');
-        console.log(navbar);
-        // const navbar = bootstrap.Collapse.getInstance(document.querySelector('#navbarSupportedContent')); // eslint-disable-line
-        resizeObserver.observe(navbar);
-        // if (window.innerWidth <= 767 && navbar){
-        //     console.log(navbar._config.toggle);
-        // } else {
-        //     console.log('mas de 767px');
-        // }
-    };
     useEffect(()=>{
         resizeObserver.observe(document.querySelector('nav'));
     }, []);
