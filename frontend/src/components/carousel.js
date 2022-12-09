@@ -8,13 +8,13 @@ export const Carousel = () => {
 
     return (
         <div id="carouselExampleIndicators" className="carousel slide carousel-fade" data-bs-interval="3000" data-bs-ride="carousel">
-            <div className="carousel-indicators">
+            {/* <div className="carousel-indicators">
                 {store.carousels &&
                 store.carousels.map((item, index)=>{
                     return <button key={index} type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to={index} className={index==0 ? "active" : ""} aria-current={index==0 ? "true" : ""} aria-label={"Slide "+(index+1)}></button>;
                 })
                 }
-            </div>
+            </div> */}
             <div className="carousel-inner">
                 {store.carousels &&
                     store.carousels.map((item,index)=>{
