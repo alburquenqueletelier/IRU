@@ -6,7 +6,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url("http://127.0.0.1:8000/media/rolls/background/Etiquetas I Roll U.png");
+  background-image: linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url("http://baal1992.pythonanywhere.com/media/rolls/background/Etiquetas I Roll U.png");
   background-size: fill;
   /* background: linear-gradient(to right, #EA6A4E,#e49280);  */
   /* background-color: #e2bc91 !important; */
