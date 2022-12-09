@@ -29,7 +29,7 @@ export const Home = () => {
       </div>
       <div className="row row-cols-2 justify-content-center my-3">
         <div className="col">
-          <h2 className="text-center">Destacados</h2>
+          {/* <h2 className="text-center">Destacados</h2> */}
           {store?.carousels ?
             <Carousel />
             : <Spinners />
