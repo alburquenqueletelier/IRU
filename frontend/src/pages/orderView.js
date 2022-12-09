@@ -15,7 +15,8 @@ export const OrderView = () => {
     const [topButtonModal, setTopButtonModal] = useState(null);
 
     const resizeObserver = new ResizeObserver((element)=>{
-        if (window.innerWidth <= 767){
+        // console.log(element);
+        if (window.innerWidth <= 767 && document.querySelector('#modal-order-button')){
             const buttonModalDetail = document.querySelector('#modal-order-button');
             buttonModalDetail.style.position = 'fixed';
             buttonModalDetail.style.top = (element[0].target.offsetHeight+5)+'px';
