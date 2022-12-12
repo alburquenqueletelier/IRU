@@ -1,4 +1,5 @@
 import React, { useEffect, useContext } from "react";
+import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 
 export const CategoryNav = () => {
@@ -38,6 +39,11 @@ export const CategoryNav = () => {
                 <li className="nav-item">
                     <a className="nav-link" href="#aggregatesHeader">Agregados</a>
                 </li>
+                {(store.order.rolls.length > 0 || store.order.combos.length > 0)  &&
+                    <li className="nav-item">
+                        <Link to="/order" className="btn nav-link" style={{color: "#EA6A4E"}}>Carro <span style={{margin: "0px"}} className="badge text-bg-secondary">{store.order.rolls.length + store.order.combos.length}</span></Link>
+                    </li>
+                }
             </ul>
         </div>
     );

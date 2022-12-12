@@ -159,7 +159,7 @@ export const Detail = (props) => {
     }, []);
 
     return (
-        <div id={"detail"+props.deliveryTag} className={"bg-white flex-column text-center align-items-stretch rounded p-2 " + props.displayMode} style={{ height: "fit-content", position: "sticky", top: "90px" }}>
+        <div id={"detail"+props.deliveryTag} className={"bg-white flex-column text-center align-items-stretch rounded p-2 " + props.displayMode} >
             {/* <div className="alert alert-danger alert-dismissible fade show" role="alert">
                 <div>Message</div>
                 <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>

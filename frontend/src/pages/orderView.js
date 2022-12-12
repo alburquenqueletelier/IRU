@@ -12,10 +12,9 @@ import { ToastProduct } from "../components/toastProduct";
 export const OrderView = () => {
 
     const { store, actions } = useContext(Context);
-    const [topButtonModal, setTopButtonModal] = useState(null);
 
     const resizeObserver = new ResizeObserver((element)=>{
-        // console.log(element);
+        // console.log(element[0].target.offsetHeight);
         if (window.innerWidth <= 767 && document.querySelector('#modal-order-button')){
             const buttonModalDetail = document.querySelector('#modal-order-button');
             buttonModalDetail.style.position = 'fixed';
@@ -26,8 +25,13 @@ export const OrderView = () => {
     });
 
     useEffect(()=>{
-        resizeObserver.observe(document.querySelector('nav'));
-    }, []);
+        const buttonModalDetail = document.querySelector('#modal-order-button');
+        if (buttonModalDetail){
+            resizeObserver.observe(document.querySelector('nav'));
+        } else {
+            resizeObserver.disconnect();
+        }
+    }, );
 
     return (
         <div className="container">
@@ -93,7 +97,7 @@ export const OrderView = () => {
             {/* <!-- Button trigger modal --> */}
             {(store.order.rolls.length > 0 || store.order.combos.length > 0) &&
                 <button id="modal-order-button" type="button" className="btn btn-info rounded-circle d-md-none" data-bs-toggle="modal" data-bs-target="#orderDetailModal">
-                    <img src="https://cdn-icons-png.flaticon.com/512/6957/6957439.png" alt="Pedido" />
+                    <img src="https://cdn-icons-png.flaticon.com/512/6737/6737602.png" alt="Pedido" />
                 </button>
 
             }

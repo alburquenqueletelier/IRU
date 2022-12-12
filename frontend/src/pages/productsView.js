@@ -1,10 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { ProductCard } from "../components/product_card";
 import { Spinners } from "../components/spinners";
 import { ProductDetail } from "../components/product_detail";
 import { CategoryNav } from "../components/category_nav";
 import { Context } from "../store/appContext";
 import { ToastProduct } from "../components/toastProduct";
+import { Link } from "react-router-dom";
 window.bootstrap = require("bootstrap");
 
 export const ProductsView = () => {
@@ -19,20 +20,21 @@ export const ProductsView = () => {
 
   // Imagenes provisorias 
   const toppingImages = [
-    {salsa: "Chocolate", urlImage: "https://cdnx.jumpseller.com/supermercadorivera/image/10114499/resize/470/645?1652366109"},
-    {salsa: "Frosting", urlImage: "https://i.blogs.es/c07e43/frosting_de_queso_crema/450_1000.jpeg"},
-    {salsa: "Glaseado", urlImage: "https://cocinaypunto.com/wp-content/uploads/2013/10/2-1.jpg"},
-    {salsa: "Crema de avellanas", urlImage: "https://jumbo.vtexassets.com/arquivos/ids/396596/Nutella-ferrero-frasco-450-g.jpg?v=637469296628100000"},
-    {salsa: "Manjar", urlImage: "https://static.emol.cl/emol50/Fotos/2020/11/02/file_20201102112610.png"},
+    { salsa: "Chocolate", urlImage: "https://cdnx.jumpseller.com/supermercadorivera/image/10114499/resize/470/645?1652366109" },
+    { salsa: "Frosting", urlImage: "https://i.blogs.es/c07e43/frosting_de_queso_crema/450_1000.jpeg" },
+    { salsa: "Glaseado", urlImage: "https://cocinaypunto.com/wp-content/uploads/2013/10/2-1.jpg" },
+    { salsa: "Crema de avellanas", urlImage: "https://jumbo.vtexassets.com/arquivos/ids/396596/Nutella-ferrero-frasco-450-g.jpg?v=637469296628100000" },
+    { salsa: "Manjar", urlImage: "https://static.emol.cl/emol50/Fotos/2020/11/02/file_20201102112610.png" },
   ];
   const aggregateImages = [
-    {salsa: "Costa Rama", urlImage: "https://carozziexport.com/assets/img/products/_large/210485_CHOCOLATE_RAMA_LECHE_16X115G_1.jpg"},
-    {salsa: "Kitkat", urlImage: "https://www.nestleprofessional-latam.com/sites/default/files/styles/np_product_detail/public/2022-07/kitkat_nuevo.png?itok=rac77r3x"},
-    {salsa: "Oreo", urlImage: "https://cdnx.jumpseller.com/supermercadorivera/image/11360204/87657865-removebg-preview.png?1656688216"},
-    {salsa: "Rocklets", urlImage: "https://dojiw2m9tvv09.cloudfront.net/24510/product/rockletschocolate0152.png"},
-    {salsa: "Rolls", urlImage: "https://www.confiteriasantiago.cl/1067-home_default/rolls-crocante-150gr.jpg"},
+    { salsa: "Costa Rama", urlImage: "https://carozziexport.com/assets/img/products/_large/210485_CHOCOLATE_RAMA_LECHE_16X115G_1.jpg" },
+    { salsa: "Kitkat", urlImage: "https://www.nestleprofessional-latam.com/sites/default/files/styles/np_product_detail/public/2022-07/kitkat_nuevo.png?itok=rac77r3x" },
+    { salsa: "Oreo", urlImage: "https://cdnx.jumpseller.com/supermercadorivera/image/11360204/87657865-removebg-preview.png?1656688216" },
+    { salsa: "Rocklets", urlImage: "https://dojiw2m9tvv09.cloudfront.net/24510/product/rockletschocolate0152.png" },
+    { salsa: "Rolls", urlImage: "https://www.confiteriasantiago.cl/1067-home_default/rolls-crocante-150gr.jpg" },
   ];
   // Imagenes provisorias 
+
   return (
     <div className="container-fluid">
       {/* Toast */}
@@ -107,7 +109,7 @@ export const ProductsView = () => {
               return (
                 <div className="col-md-3 col-10 d-flex align-items-stretch mb-1" key={index}>
                   <div className="card">
-                    <img src={item.image ? item.image : toppingImages.filter(topping=>topping.salsa == item.name)[0].urlImage} className="size-image" alt={item.name} />
+                    <img src={item.image ? item.image : toppingImages.filter(topping => topping.salsa == item.name)[0].urlImage} className="size-image" alt={item.name} />
                     <div className="card-body d-flex flex-column ">
                       <h6 className="card-title">{item.name}</h6>
                       <p>
@@ -129,7 +131,7 @@ export const ProductsView = () => {
               return (
                 <div className="col-md-3 col-10 d-flex align-items-stretch mb-1" key={index}>
                   <div className="card">
-                    <img src={item.image ? item.image : aggregateImages.filter(topping=>topping.salsa == item.name)[0].urlImage} className="size-image" alt={item.name} />
+                    <img src={item.image ? item.image : aggregateImages.filter(topping => topping.salsa == item.name)[0].urlImage} className="size-image" alt={item.name} />
                     <div className="card-body d-flex flex-column ">
                       <h6 className="card-title">{item.name}</h6>
                       <p>
